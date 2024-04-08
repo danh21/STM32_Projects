@@ -1,0 +1,18 @@
+!SESSION 2024-04-08 21:31:32.883 -----------------------------------------------
+eclipse.buildId=Version 1.11.0
+java.version=11.0.16
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-04-08 21:32:14.081
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-04-08 21:32:14.155
+!MESSAGE Log4j initialized with config file D:\cd\STM32\Project\STM32_Projects\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-04-08 21:32:17.709
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-04-08 22:03:24.806
+!MESSAGE Indexed 'Led_HAL' (19 sources, 81 headers) in 4.75 sec: 4,376 declarations; 17,619 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0091%)
