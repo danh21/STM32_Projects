@@ -2,7 +2,7 @@
 /**
   ******************************************************************************
   * @file           : main.c
-  * @brief          : STM32 works with Led
+  * @brief          : Main program body
   ******************************************************************************
   * @attention
   *
@@ -13,9 +13,6 @@
   * in the root directory of this software component.
   * If no LICENSE file comes with this software, it is provided AS-IS.
   *
-  *							REVISION HISTORY
-  *	Version 1.0: blink led by periodically
-  *	Version 2.0: use button to toggle led by polling technique
   ******************************************************************************
   */
 /* USER CODE END Header */
@@ -38,7 +35,7 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define toggle_led 					HAL_GPIO_TogglePin(led_GPIO_Port, led_Pin)
+#define toggle_led 					HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin)
 #define button_is_pressed 			(HAL_GPIO_ReadPin(button_GPIO_Port, button_Pin) == 1)
 #define waiting_button_is_released 	while (button_is_pressed)
 /* USER CODE END PM */
@@ -97,11 +94,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if (button_is_pressed)
-	  {
-		  waiting_button_is_released;
-		  toggle_led;
-	  }
+	  toggle_led;
+	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

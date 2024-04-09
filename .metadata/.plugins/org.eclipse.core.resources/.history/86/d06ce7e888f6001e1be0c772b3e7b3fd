@@ -2,7 +2,7 @@
 /**
   ******************************************************************************
   * @file           : main.c
-  * @brief          : STM32 works with Led
+  * @brief          : Main program body
   ******************************************************************************
   * @attention
   *
@@ -13,9 +13,6 @@
   * in the root directory of this software component.
   * If no LICENSE file comes with this software, it is provided AS-IS.
   *
-  *							REVISION HISTORY
-  *	Version 1.0: blink led by periodically
-  *	Version 2.0: use button to toggle led by polling technique
   ******************************************************************************
   */
 /* USER CODE END Header */
@@ -67,6 +64,7 @@ static void MX_GPIO_Init(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */

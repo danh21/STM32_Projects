@@ -5,4 +5,4 @@
     - STM32CubeIDE
 
 # Projects
-    - Led_HAL: blink led by periodically
+    - Led_HAL: use button to toggle led by polling technique
