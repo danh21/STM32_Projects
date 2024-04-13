@@ -15,6 +15,8 @@
   *
   *							REVISION HISTORY
   *	Version 1.0: blink led by periodically
+  *	Version 1.1: blink led by periodically using counter timer
+  *
   *	Version 2.0: use button to toggle led by polling technique
   ******************************************************************************
   */
@@ -39,11 +41,10 @@
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 #define toggle_led 					HAL_GPIO_TogglePin(led_GPIO_Port, led_Pin)
-#define button_is_pressed 			(HAL_GPIO_ReadPin(button_GPIO_Port, button_Pin) == 1)
-#define waiting_button_is_released 	while (button_is_pressed)
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+TIM_HandleTypeDef htim1;
 
 /* USER CODE BEGIN PV */
 
@@ -52,13 +53,18 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_TIM1_Init(void);
 /* USER CODE BEGIN PFP */
-
+void delay_ms(int ms);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+void delay_ms(int ms)
+{
+	__HAL_TIM_SET_COUNTER(&htim1, 0);			 // set the counter value to 0
+	while (__HAL_TIM_GET_COUNTER(&htim1) < ms);	 // wait for the counter to reach threshold
+}
 /* USER CODE END 0 */
 
 /**
@@ -89,19 +95,22 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_TIM_Base_Start(&htim1);		// start timer base
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if (button_is_pressed)
-	  {
-		  waiting_button_is_released;
-		  toggle_led;
-	  }
+	  /*
+	   * HandleTimer.Init.Prescaler = Timer'sClockFrequency*DesiredPeriod -1 = 16,000,000Hz * 1ms - 1 = 15,999
+	   * */
+
+	  toggle_led;
+	  delay_ms(1000);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -151,6 +160,52 @@ void SystemClock_Config(void)
 }
 
 /**
+  * @brief TIM1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM1_Init(void)
+{
+
+  /* USER CODE BEGIN TIM1_Init 0 */
+
+  /* USER CODE END TIM1_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM1_Init 1 */
+
+  /* USER CODE END TIM1_Init 1 */
+  htim1.Instance = TIM1;
+  htim1.Init.Prescaler = 15999;
+  htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim1.Init.Period = 65535;
+  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim1.Init.RepetitionCounter = 0;
+  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM1_Init 2 */
+
+  /* USER CODE END TIM1_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -160,17 +215,11 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(led_GPIO_Port, led_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin : button_Pin */
-  GPIO_InitStruct.Pin = button_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-  HAL_GPIO_Init(button_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : led_Pin */
   GPIO_InitStruct.Pin = led_Pin;

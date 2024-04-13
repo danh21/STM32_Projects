@@ -1,27 +1,39 @@
-22:41:35 **** Incremental Build of configuration Debug for project Led_HAL ****
+22:47:30 **** Incremental Build of configuration Debug for project Led_HAL ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc "../Core/Src/stm32f4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_hal_msp.d" -MT"Core/Src/stm32f4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_hal_msp.o"
-arm-none-eabi-gcc "../Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_it.d" -MT"Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_it.o"
 arm-none-eabi-gcc -o "Led_HAL.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\cd\STM32\Project\STM32_Projects\Led_HAL\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Led_HAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: Led_HAL.elf
  
 arm-none-eabi-size   Led_HAL.elf 
 arm-none-eabi-objdump -h -S  Led_HAL.elf  > "Led_HAL.list"
    text	   data	    bss	    dec	    hex	filename
-   5864	     20	   1572	   7456	   1d20	Led_HAL.elf
+   7476	     20	   1644	   9140	   23b4	Led_HAL.elf
 Finished building: default.size.stdout
  
 Finished building: Led_HAL.list
  
-22:41:41 **** Incremental Build of configuration Debug for project Led_HAL ****
+22:47:42 **** Incremental Build of configuration Debug for project Led_HAL ****
 make -j8 all 
 arm-none-eabi-size   Led_HAL.elf 
    text	   data	    bss	    dec	    hex	filename
-   5864	     20	   1572	   7456	   1d20	Led_HAL.elf
+   7476	     20	   1644	   9140	   23b4	Led_HAL.elf
 Finished building: default.size.stdout
  
-22:55:49 **** Incremental Build of configuration Debug for project Led_HAL ****
+22:50:24 **** Incremental Build of configuration Debug for project Led_HAL ****
+make -j8 all 
+arm-none-eabi-size   Led_HAL.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7476	     20	   1644	   9140	   23b4	Led_HAL.elf
+Finished building: default.size.stdout
+ 
+23:04:40 **** Incremental Build of configuration Debug for project Led_HAL ****
+make -j8 all 
+arm-none-eabi-size   Led_HAL.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7476	     20	   1644	   9140	   23b4	Led_HAL.elf
+Finished building: default.size.stdout
+ 
+10:29:05 **** Incremental Build of configuration Debug for project Led_HAL ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc -o "Led_HAL.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\cd\STM32\Project\STM32_Projects\Led_HAL\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Led_HAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
@@ -30,7 +42,104 @@ Finished building target: Led_HAL.elf
 arm-none-eabi-size   Led_HAL.elf 
 arm-none-eabi-objdump -h -S  Led_HAL.elf  > "Led_HAL.list"
    text	   data	    bss	    dec	    hex	filename
-   5864	     20	   1572	   7456	   1d20	Led_HAL.elf
+   7504	     20	   1644	   9168	   23d0	Led_HAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: Led_HAL.list
+ 
+11:00:40 **** Incremental Build of configuration Debug for project Led_HAL ****
+make -j8 all 
+arm-none-eabi-gcc -o "Led_HAL.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\cd\STM32\Project\STM32_Projects\Led_HAL\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Led_HAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Led_HAL.elf
+ 
+arm-none-eabi-size   Led_HAL.elf 
+arm-none-eabi-objdump -h -S  Led_HAL.elf  > "Led_HAL.list"
+   text	   data	    bss	    dec	    hex	filename
+   7504	     20	   1644	   9168	   23d0	Led_HAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: Led_HAL.list
+ 
+11:01:36 **** Incremental Build of configuration Debug for project Led_HAL ****
+make -j8 all 
+arm-none-eabi-size   Led_HAL.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7504	     20	   1644	   9168	   23d0	Led_HAL.elf
+Finished building: default.size.stdout
+ 
+11:08:39 **** Incremental Build of configuration Debug for project Led_HAL ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Led_HAL.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\cd\STM32\Project\STM32_Projects\Led_HAL\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Led_HAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Led_HAL.elf
+ 
+arm-none-eabi-size   Led_HAL.elf 
+arm-none-eabi-objdump -h -S  Led_HAL.elf  > "Led_HAL.list"
+   text	   data	    bss	    dec	    hex	filename
+   7728	     20	   1644	   9392	   24b0	Led_HAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: Led_HAL.list
+ 
+11:11:18 **** Incremental Build of configuration Debug for project Led_HAL ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Led_HAL.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\cd\STM32\Project\STM32_Projects\Led_HAL\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Led_HAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Led_HAL.elf
+ 
+arm-none-eabi-size   Led_HAL.elf 
+arm-none-eabi-objdump -h -S  Led_HAL.elf  > "Led_HAL.list"
+   text	   data	    bss	    dec	    hex	filename
+   7700	     20	   1644	   9364	   2494	Led_HAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: Led_HAL.list
+ 
+11:35:01 **** Incremental Build of configuration Debug for project Led_HAL ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Led_HAL.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\cd\STM32\Project\STM32_Projects\Led_HAL\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Led_HAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Led_HAL.elf
+ 
+arm-none-eabi-size   Led_HAL.elf 
+arm-none-eabi-objdump -h -S  Led_HAL.elf  > "Led_HAL.list"
+   text	   data	    bss	    dec	    hex	filename
+   7700	     20	   1644	   9364	   2494	Led_HAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: Led_HAL.list
+ 
+11:36:52 **** Incremental Build of configuration Debug for project Led_HAL ****
+make -j8 all 
+arm-none-eabi-size   Led_HAL.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7700	     20	   1644	   9364	   2494	Led_HAL.elf
+Finished building: default.size.stdout
+ 
+11:39:03 **** Incremental Build of configuration Debug for project Led_HAL ****
+make -j8 all 
+arm-none-eabi-size   Led_HAL.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7700	     20	   1644	   9364	   2494	Led_HAL.elf
+Finished building: default.size.stdout
+ 
+11:40:24 **** Incremental Build of configuration Debug for project Led_HAL ****
+make -j8 all 
+arm-none-eabi-size   Led_HAL.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7700	     20	   1644	   9364	   2494	Led_HAL.elf
+Finished building: default.size.stdout
+ 
+12:28:36 **** Incremental Build of configuration Debug for project Led_HAL ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Led_HAL.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\cd\STM32\Project\STM32_Projects\Led_HAL\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Led_HAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Led_HAL.elf
+ 
+arm-none-eabi-size   Led_HAL.elf 
+arm-none-eabi-objdump -h -S  Led_HAL.elf  > "Led_HAL.list"
+   text	   data	    bss	    dec	    hex	filename
+   7700	     20	   1644	   9364	   2494	Led_HAL.elf
 Finished building: default.size.stdout
  
 Finished building: Led_HAL.list
