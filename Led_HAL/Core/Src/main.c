@@ -15,7 +15,8 @@
   *
   *							REVISION HISTORY
   *	Version 1.0: blink led by periodically
-  *	Version 1.1: blink led by periodically using counter timer
+  *	Version 1.1: blink led by periodically using counter up timer
+  *	Version 1.2: blink led by periodically using interrupt timer
   *
   *	Version 2.0: use button to toggle led by polling technique
   ******************************************************************************

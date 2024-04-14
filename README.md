@@ -5,4 +5,4 @@
     - STM32CubeIDE
 
 # Projects
-    - Led_HAL: blink led by periodically using counter timer
+    - Led_HAL: blink led by periodically using interrupt timer
