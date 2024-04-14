@@ -36,7 +36,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define yourDelay 1000
+#define yourDelay 1200
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/

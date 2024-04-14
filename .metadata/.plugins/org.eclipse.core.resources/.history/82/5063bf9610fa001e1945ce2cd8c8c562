@@ -36,7 +36,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define yourDelay 1000
+#define yourDelay 1200
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -118,7 +118,7 @@ int main(void)
 	   * SETTING:
 	   * 	PSC: 99
 	   * 	ARR: 159
-	   * 	NVIC -> TIM update interrupt and TIM global interrupt /or/ TIM global interrupt
+	   * 	NVIC -> TIM update interrupt and TIM10 global interrupt
 	   * */
 
     /* USER CODE END WHILE */
