@@ -6,4 +6,4 @@
 
 # Projects
     - Led_HAL: blink led by periodically using interrupt timer
-    - Led_Reg: blink led by periodically using ODR
+    - Led_Reg: blink led by periodically using BSRR

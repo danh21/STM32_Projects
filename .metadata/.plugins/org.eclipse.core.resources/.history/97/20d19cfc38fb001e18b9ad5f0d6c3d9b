@@ -15,7 +15,6 @@
  *
  *							REVISION HISTORY
  * Version 1.0: blink led by periodically using ODR
- * Version 1.1: blink led by periodically using BSRR
  ******************************************************************************
  */
 /* LIBRARIES */
@@ -25,8 +24,8 @@
 
 
 /* MACROES */
-#define led_on 	GPIOD->BSRR |= (1<<13)
-#define led_off	GPIOD->BSRR |= (1<<29)
+#define led_on 	GPIOD->ODR |= (1<<13)
+#define led_off	GPIOD->ODR &= ~(1<<13)
 
 
 

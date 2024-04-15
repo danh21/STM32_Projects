@@ -41,11 +41,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  18 .debug_line   000005c9  00000000  00000000  000289ca  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000878bd  00000000  00000000  00028f93  2**0
+ 19 .debug_str    000878be  00000000  00000000  00028f93  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000050  00000000  00000000  000b0850  2**0
+ 20 .comment      00000050  00000000  00000000  000b0851  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  000000c0  00000000  00000000  000b08a0  2**2
+ 21 .debug_frame  000000c0  00000000  00000000  000b08a4  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -79,10 +79,10 @@ Disassembly of section .text:
  80001e4:	0800033c 	.word	0x0800033c
 
 080001e8 <main>:
-void delay(int a);
 
 
 
+/* MAIN */
 int main()
 {
  80001e8:	b580      	push	{r7, lr}
@@ -96,19 +96,19 @@ int main()
 	{
 		led_on;
  80001f4:	4b0a      	ldr	r3, [pc, #40]	; (8000220 <main+0x38>)
- 80001f6:	695b      	ldr	r3, [r3, #20]
+ 80001f6:	699b      	ldr	r3, [r3, #24]
  80001f8:	4a09      	ldr	r2, [pc, #36]	; (8000220 <main+0x38>)
  80001fa:	f443 5300 	orr.w	r3, r3, #8192	; 0x2000
- 80001fe:	6153      	str	r3, [r2, #20]
+ 80001fe:	6193      	str	r3, [r2, #24]
 		delay(10000);
  8000200:	f242 7010 	movw	r0, #10000	; 0x2710
  8000204:	f000 f82e 	bl	8000264 <delay>
 		led_off;
  8000208:	4b05      	ldr	r3, [pc, #20]	; (8000220 <main+0x38>)
- 800020a:	695b      	ldr	r3, [r3, #20]
+ 800020a:	699b      	ldr	r3, [r3, #24]
  800020c:	4a04      	ldr	r2, [pc, #16]	; (8000220 <main+0x38>)
- 800020e:	f423 5300 	bic.w	r3, r3, #8192	; 0x2000
- 8000212:	6153      	str	r3, [r2, #20]
+ 800020e:	f043 5300 	orr.w	r3, r3, #536870912	; 0x20000000
+ 8000212:	6193      	str	r3, [r2, #24]
 		delay(10000);
  8000214:	f242 7010 	movw	r0, #10000	; 0x2710
  8000218:	f000 f824 	bl	8000264 <delay>
@@ -118,10 +118,10 @@ int main()
  8000220:	40020c00 	.word	0x40020c00
 
 08000224 <SystemClock_config>:
-}
 
 
 
+/* APIs */
 void SystemClock_config()
 {
  8000224:	b480      	push	{r7}
@@ -142,8 +142,6 @@ void SystemClock_config()
 
 08000244 <GPIO_init>:
 
-
-
 void GPIO_init(void)
 {
  8000244:	b480      	push	{r7}
@@ -163,8 +161,6 @@ void GPIO_init(void)
  8000260:	40020c00 	.word	0x40020c00
 
 08000264 <delay>:
-
-
 
 void delay(int a)
 {

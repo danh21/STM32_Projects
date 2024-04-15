@@ -632,10 +632,10 @@ LOAD d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube
  .debug_line    0x0000000000000000      0x545 ./Src/main.o
  .debug_line    0x0000000000000545       0x84 ./Startup/startup_stm32f407vetx.o
 
-.debug_str      0x0000000000000000    0x878bd
- .debug_str     0x0000000000000000    0x8788c ./Src/main.o
-                                      0x879f5 (size before relaxing)
- .debug_str     0x000000000008788c       0x31 ./Startup/startup_stm32f407vetx.o
+.debug_str      0x0000000000000000    0x878be
+ .debug_str     0x0000000000000000    0x8788d ./Src/main.o
+                                      0x879f6 (size before relaxing)
+ .debug_str     0x000000000008788d       0x31 ./Startup/startup_stm32f407vetx.o
                                          0x62 (size before relaxing)
 
 .comment        0x0000000000000000       0x50
