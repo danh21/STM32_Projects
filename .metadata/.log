@@ -128,3 +128,15 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data D:\cd\STM32\Proj
 
 !ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-04-15 22:01:16.649
 !MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-04-15 22:08:50.226
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 5 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-04-15 22:08:50.228
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-04-15 22:08:50.228
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 5 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-04-15 22:08:50.228
+!MESSAGE Existing sessions are:
