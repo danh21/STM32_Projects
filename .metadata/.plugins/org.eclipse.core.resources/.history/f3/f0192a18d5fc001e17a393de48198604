@@ -16,7 +16,6 @@
  *							REVISION HISTORY
  * Version 1.0: blink led by periodically using ODR
  * Version 1.1: blink led by periodically using BSRR
- * Version 1.2: blink led by periodically using counter up timer
  *
  * Version 2.0: toggle led by button using polling technique
  ******************************************************************************
@@ -33,7 +32,7 @@
 #define led_on 		GPIOD->ODR |= 1<<13
 #define led_off		GPIOD->ODR &= ~(1<<13)
 #define led_is_off	(GPIOD->ODR & 1<<13) == 0
-#define toggle_led 	led_is_off ? led_on : (led_off)
+#define toggle_led 					led_is_off ? led_on : (led_off)
 
 
 
@@ -52,7 +51,7 @@ int main()
 	while(1)
 	{
 		toggle_led;
-		Timer1_delay_ms(500);
+		delay_ms(500);
 	}
 }
 
