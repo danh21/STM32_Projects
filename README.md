@@ -3,6 +3,7 @@
 
 # Software
     - STM32CubeIDE
+    - Hercules
 
 # Preferences
     - Set up firmware repo
