@@ -16,7 +16,6 @@
   *							REVISION HISTORY
   *	Version 1.0: enter pass using polling
   *
-  * Version 2.0: enter cmd, respond code using polling
   ******************************************************************************
   */
 /* USER CODE END Header */
@@ -40,9 +39,15 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define send_request	 	HAL_UART_Transmit(huart, (uint8_t*)request, sizeof(request), 1000)
-#define waiting_enter_cmd 	HAL_UART_Receive(huart, (uint8_t*)rxBuffer, sizeof(rxBuffer), 3000)
-#define not_yet_enter_cmd 	strcmp(rxBuffer, '\0') == 0
+#define send_request	 	HAL_UART_Transmit(huart, (uint8_t*)input, sizeof(input), 1000)
+#define notify_success		HAL_UART_Transmit(huart, (uint8_t*)rightStr, sizeof(rightStr), 1000)
+#define notify_fail			HAL_UART_Transmit(huart, (uint8_t*)wrongStr, sizeof(wrongStr), 1000)
+
+#define waiting_enter_pass 	HAL_UART_Receive(huart, (uint8_t*)rxBuffer, sizeof(rxBuffer), 3000)
+
+#define not_yet_enter_pass 	strcmp(rxBuffer, '\0') == 0
+#define correct_pass		strcmp(rxBuffer, password) == 0
+
 #define reset_buffer		memset(rxBuffer, 0, strlen(rxBuffer))
 /* USER CODE END PM */
 
@@ -52,33 +57,11 @@ UART_HandleTypeDef huart2;
 /* USER CODE BEGIN PV */
 UART_HandleTypeDef *huart = &huart2;
 
-typedef struct {
-  char* cmd;
-  char* response;
-} Command;
-
-Command commands[] = {
-  {"FEC3", "FDC3"},
-  {"FE2F", "FD2F"},
-  {"FE17", "FD17"},
-  {"FE20", "FD20"},
-  {"FE21", "FD21"},
-  {"FE3C", "FD3C"},
-  {"FE3D", "FD3D"},
-  {"FE3E", "FD3E"},
-  {"FE48", "FC00"},
-  {"FE16", "FD16"},
-  {"FE24", "FD24"},
-  {"FE25", "FD25"},
-  {"FE20", "FD20"},
-  {"FE21", "FD21"},
-  {"FE0D", "FD0D"},
-  {"FE0C", "FD0C"},
-};
-
-char request[] 	= "\nEnter the command: ";
-char reply[] 	= "\nRespond: ";
-char rxBuffer[20];
+char input[] 	= "Enter the password: \n";
+char rightStr[] = "\nEnter successfully\n";
+char wrongStr[] = "\nEnter unsuccessfully\n";
+char password[] = "danh21";
+char rxBuffer[100];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -86,24 +69,12 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
-void process_cmd(char *in);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void process_cmd(char *in)
-{
-    char *out = "Invalid command!";
 
-    for (int i = 0; i < sizeof(commands) / sizeof(commands[0]); i++)
-        if (strcmp(in, commands[i].cmd) == 0) {
-        	out = commands[i].response;
-            break;
-        }
-
-    HAL_UART_Transmit(huart, (uint8_t*)reply, strlen(reply), 1000);
-    HAL_UART_Transmit(huart, (uint8_t*)out, strlen(out), 1000);
-}
 /* USER CODE END 0 */
 
 /**
@@ -146,12 +117,17 @@ int main(void)
 	  send_request;
 
 	  do {
-		  waiting_enter_cmd;
-	  } while (not_yet_enter_cmd);
+		  waiting_enter_pass;
+	  } while (not_yet_enter_pass);
 
-	  process_cmd(rxBuffer);
-
-	  reset_buffer;
+	  if (correct_pass) {
+		  notify_success;
+		  break;
+	  }
+	  else {
+		  notify_fail;
+		  reset_buffer;
+	  }
 
     /* USER CODE END WHILE */
 

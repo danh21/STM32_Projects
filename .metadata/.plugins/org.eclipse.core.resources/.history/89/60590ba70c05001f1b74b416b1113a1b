@@ -52,6 +52,23 @@ UART_HandleTypeDef huart2;
 /* USER CODE BEGIN PV */
 UART_HandleTypeDef *huart = &huart2;
 
+char input[] 	= "Enter the password: \n";
+char rightStr[] = "\nEnter successfully\n";
+char wrongStr[] = "\nEnter unsuccessfully\n";
+char password[] = "danh21";
+char rxBuffer[100];
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_USART2_UART_Init(void);
+/* USER CODE BEGIN PFP */
+void process_cmd(char *in);
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
 typedef struct {
   char* cmd;
   char* response;
@@ -76,21 +93,14 @@ Command commands[] = {
   {"FE0C", "FD0C"},
 };
 
+
+
 char request[] 	= "\nEnter the command: ";
 char reply[] 	= "\nRespond: ";
 char rxBuffer[20];
-/* USER CODE END PV */
 
-/* Private function prototypes -----------------------------------------------*/
-void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
-static void MX_USART2_UART_Init(void);
-/* USER CODE BEGIN PFP */
-void process_cmd(char *in);
-/* USER CODE END PFP */
 
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
+
 void process_cmd(char *in)
 {
     char *out = "Invalid command!";
