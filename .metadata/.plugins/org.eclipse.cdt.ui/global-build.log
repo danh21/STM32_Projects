@@ -1,28 +1,21 @@
-10:08:57 **** Incremental Build of configuration Debug for project UART_HAL ****
+22:56:34 **** Incremental Build of configuration Debug for project UART_Reg ****
 make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:45:28: warning: null argument where non-null required (argument 2) [-Wnonnull]
-   45 | #define not_yet_enter_cmd  strcmp(rxBuffer, '\0') == 0
-      |                            ^~~~~~
-../Core/Src/main.c:150:13: note: in expansion of macro 'not_yet_enter_cmd'
-  150 |    } while (not_yet_enter_cmd);
-      |             ^~~~~~~~~~~~~~~~~
-arm-none-eabi-gcc -o "UART_HAL.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\cd\STM32\Project\STM32_Projects\UART_HAL\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART_HAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: UART_HAL.elf
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F407VETx -c -I../Inc -I"D:/cd/STM32/Project/STM32_Projects/Led_HAL/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/cd/STM32/Project/STM32_Projects/Led_HAL/Drivers/CMSIS/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "UART_Reg.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\cd\STM32\Project\STM32_Projects\UART_Reg\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART_Reg.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: UART_Reg.elf
  
-arm-none-eabi-size   UART_HAL.elf 
-arm-none-eabi-objdump -h -S  UART_HAL.elf  > "UART_HAL.list"
+arm-none-eabi-size   UART_Reg.elf 
+arm-none-eabi-objdump -h -S  UART_Reg.elf  > "UART_Reg.list"
    text	   data	    bss	    dec	    hex	filename
-   8676	    188	   1660	  10524	   291c	UART_HAL.elf
+   1240	     16	   1568	   2824	    b08	UART_Reg.elf
 Finished building: default.size.stdout
  
-Finished building: UART_HAL.list
+Finished building: UART_Reg.list
  
-10:09:39 **** Incremental Build of configuration Debug for project UART_HAL ****
+22:56:37 **** Incremental Build of configuration Debug for project UART_Reg ****
 make -j8 all 
-arm-none-eabi-size   UART_HAL.elf 
+arm-none-eabi-size   UART_Reg.elf 
    text	   data	    bss	    dec	    hex	filename
-   8676	    188	   1660	  10524	   291c	UART_HAL.elf
+   1240	     16	   1568	   2824	    b08	UART_Reg.elf
 Finished building: default.size.stdout
  

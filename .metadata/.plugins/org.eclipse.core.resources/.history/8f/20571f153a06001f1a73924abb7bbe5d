@@ -1,0 +1,61 @@
+/**
+ ******************************************************************************
+ * @file           : main.c
+ * @author         : Danh21
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2024 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ *							REVISION HISTORY
+ * Version 1.0: transmit data by UART
+ ******************************************************************************
+ */
+/* LIBRARIES */
+#include <stdint.h>
+#include <stm32f407xx.h>
+#include "Timer.h"
+#include "SystemClock.h"
+#include "USART.h"
+
+
+
+/* MACROES */
+#define send_data(x) USART_transmit(x)
+
+
+
+/* PROTOTYPE */
+void GPIO_init(void);
+
+
+
+/* MAIN */
+int main()
+{
+	SystemClock_config();
+	GPIO_init();
+	Timer1_init();
+	USART_init();
+
+	while(1)
+	{
+		send_data("danh21\n");
+		Timer1_delay_ms(1000);
+	}
+}
+
+
+
+/* APIs */
+void GPIO_init(void)
+{
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;	// IO port D clock enable
+	GPIOD->MODER |= GPIO_MODER_MODER13_0;	// General purpose output mode
+}
