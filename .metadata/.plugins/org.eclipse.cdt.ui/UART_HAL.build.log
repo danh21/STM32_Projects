@@ -1,4 +1,4 @@
-10:09:39 **** Incremental Build of configuration Debug for project UART_HAL ****
+11:45:55 **** Build of configuration Debug for project UART_HAL ****
 make -j8 all 
 arm-none-eabi-size   UART_HAL.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size   UART_HAL.elf
 Finished building: default.size.stdout
  
 
-10:09:39 Build Finished. 0 errors, 0 warnings. (took 289ms)
+11:45:55 Build Finished. 0 errors, 0 warnings. (took 286ms)
 

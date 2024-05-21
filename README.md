@@ -4,6 +4,10 @@
 # Software
     - STM32CubeIDE
     - Hercules
+    
+# Hardware
+    - Board STM32F407
+    - CP2102 USB to TTL UART Serial Converter Module
 
 # Preferences
     - Set up firmware repo
@@ -20,3 +24,11 @@
             + C/C++ Build -> Settings -> Tool Settings -> MCU GCC Compiler -> Include paths -> Add ..
                 "${workspace_loc:/Led_HAL/Drivers/CMSIS/Device/ST/STM32F4xx/Include}"
                 "${workspace_loc:/Led_HAL/Drivers/CMSIS/Device/ST/STM32F4xx/Include}"
+
+# Debug with SWV
+    - Run -> Debug Configurations... 
+        + In tab Debugger -> Enable Serial Wire Viewer (SWV) -> Debug
+    - Window -> Show View -> SWV -> SWV ITM Data Console
+        + Configure trace -> Tick to ITM Stimulus port 0 -> OK
+        + Start trace
+    - Resume debugging (F8)
