@@ -1,99 +1,56 @@
-11:45:01 **** Incremental Build of configuration Debug for project ADC_HAL ****
-make -j8 all 
-arm-none-eabi-size   ADC_HAL.elf 
-   text	   data	    bss	    dec	    hex	filename
-  12668	    120	   1664	  14452	   3874	ADC_HAL.elf
-Finished building: default.size.stdout
- 
-11:45:32 **** Incremental Build of configuration Debug for project ADC_HAL ****
-make -j8 all 
-arm-none-eabi-size   ADC_HAL.elf 
-   text	   data	    bss	    dec	    hex	filename
-  12668	    120	   1664	  14452	   3874	ADC_HAL.elf
-Finished building: default.size.stdout
- 
-11:45:53 **** Incremental Build of configuration Debug for project ADC_HAL ****
-make -j8 all 
-arm-none-eabi-size   ADC_HAL.elf 
-   text	   data	    bss	    dec	    hex	filename
-  12668	    120	   1664	  14452	   3874	ADC_HAL.elf
-Finished building: default.size.stdout
- 
-11:45:53 **** Build of configuration Debug for project Led_HAL ****
+22:13:18 **** Incremental Build of configuration Debug for project ADC_HAL ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "Led_HAL.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\cd\STM32\Project\STM32_Projects\Led_HAL\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Led_HAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: Led_HAL.elf
- 
-arm-none-eabi-size   Led_HAL.elf 
-arm-none-eabi-objdump -h -S  Led_HAL.elf  > "Led_HAL.list"
-   text	   data	    bss	    dec	    hex	filename
-   8468	     20	   1644	  10132	   2794	Led_HAL.elf
-Finished building: default.size.stdout
- 
-Finished building: Led_HAL.list
- 
-11:45:54 **** Build of configuration Debug for project Led_Reg ****
-make -j8 all 
-arm-none-eabi-size   Led_Reg.elf 
-   text	   data	    bss	    dec	    hex	filename
-   1040	      8	   1568	   2616	    a38	Led_Reg.elf
-Finished building: default.size.stdout
- 
-11:45:55 **** Build of configuration Debug for project UART_HAL ****
-make -j8 all 
-arm-none-eabi-size   UART_HAL.elf 
-   text	   data	    bss	    dec	    hex	filename
-   8676	    188	   1660	  10524	   291c	UART_HAL.elf
-Finished building: default.size.stdout
- 
-11:45:55 **** Incremental Build of configuration Debug for project UART_Reg ****
-make -j8 all 
-arm-none-eabi-size   UART_Reg.elf 
-   text	   data	    bss	    dec	    hex	filename
-   1240	     16	   1568	   2824	    b08	UART_Reg.elf
-Finished building: default.size.stdout
- 
-21:11:58 **** Incremental Build of configuration Debug for project ADC_HAL ****
-make -j8 all 
-arm-none-eabi-size   ADC_HAL.elf 
-   text	   data	    bss	    dec	    hex	filename
-  12668	    120	   1664	  14452	   3874	ADC_HAL.elf
-Finished building: default.size.stdout
- 
-21:32:05 **** Incremental Build of configuration Debug for project ADC_HAL ****
-make -j8 all 
-arm-none-eabi-size   ADC_HAL.elf 
-   text	   data	    bss	    dec	    hex	filename
-  12668	    120	   1664	  14452	   3874	ADC_HAL.elf
-Finished building: default.size.stdout
- 
-21:38:18 **** Incremental Build of configuration Debug for project ADC_HAL ****
-make -j8 all 
-arm-none-eabi-size   ADC_HAL.elf 
-   text	   data	    bss	    dec	    hex	filename
-  12668	    120	   1664	  14452	   3874	ADC_HAL.elf
-Finished building: default.size.stdout
- 
-22:07:12 **** Incremental Build of configuration Debug for project ADC_HAL ****
-make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:118:4: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
-  118 |    printf("ADC Value is %d\n", ADC_value);
-      |    ^~~~~~
-../Core/Src/main.c:118:4: warning: incompatible implicit declaration of built-in function 'printf'
-../Core/Src/main.c:23:1: note: include '<stdio.h>' or provide a declaration of 'printf'
-   22 | #include "main.h"
+../Core/Src/main.c: In function 'HAL_ADC_ConvCpltCallback':
+../Core/Src/main.c:85:3: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   85 |   printf("ADC Value is %d\n", ADC_value);
+      |   ^~~~~~
+../Core/Src/main.c:85:3: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/main.c:24:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   23 | #include "main.h"
   +++ |+#include <stdio.h>
-   23 | 
+   24 | 
 arm-none-eabi-gcc -o "ADC_HAL.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\cd\STM32\Project\STM32_Projects\ADC_HAL\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_HAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: ADC_HAL.elf
  
 arm-none-eabi-size   ADC_HAL.elf 
 arm-none-eabi-objdump -h -S  ADC_HAL.elf  > "ADC_HAL.list"
    text	   data	    bss	    dec	    hex	filename
-  12668	    120	   1664	  14452	   3874	ADC_HAL.elf
+  12096	    124	   1668	  13888	   3640	ADC_HAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: ADC_HAL.list
+ 
+
+22:13:19 Build Finished. 0 errors, 2 warnings. (took 1s.163ms)
+
+22:13:21 **** Incremental Build of configuration Debug for project ADC_HAL ****
+make -j8 all 
+arm-none-eabi-size   ADC_HAL.elf 
+   text	   data	    bss	    dec	    hex	filename
+  12096	    124	   1668	  13888	   3640	ADC_HAL.elf
+Finished building: default.size.stdout
+ 
+22:13:52 **** Incremental Build of configuration Debug for project ADC_HAL ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_hal_msp.d" -MT"Core/Src/stm32f4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_hal_msp.o"
+../Core/Src/main.c: In function 'HAL_ADC_ConvCpltCallback':
+../Core/Src/main.c:85:3: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   85 |   printf("ADC Value is %d\n", ADC_value);
+      |   ^~~~~~
+../Core/Src/main.c:85:3: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/main.c:24:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   23 | #include "main.h"
+  +++ |+#include <stdio.h>
+   24 | 
+arm-none-eabi-gcc -o "ADC_HAL.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\cd\STM32\Project\STM32_Projects\ADC_HAL\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_HAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC_HAL.elf
+ 
+arm-none-eabi-size   ADC_HAL.elf 
+arm-none-eabi-objdump -h -S  ADC_HAL.elf  > "ADC_HAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  12992	    124	   1668	  14784	   39c0	ADC_HAL.elf
 Finished building: default.size.stdout
  
 Finished building: ADC_HAL.list

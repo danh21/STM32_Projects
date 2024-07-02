@@ -15,6 +15,7 @@
   *
   *							REVISION HISTORY
   *	Version 1.0: read ADC by polling and send to SWV ITM data console
+  *	Version 1.1: read ADC using interrupt and send to SWV ITM data console
   ******************************************************************************
   */
 /* USER CODE END Header */
@@ -46,6 +47,8 @@ ADC_HandleTypeDef hadc1;
 
 /* USER CODE BEGIN PV */
 uint16_t ADC_value;
+
+ADC_HandleTypeDef *hadc = &hadc1;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -70,6 +73,18 @@ int _write(int file, char *ptr, int len)
   }
 
   return len;
+}
+
+
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
+{
+//	if (hadc->Instance == hadc1.Instance)
+//	{
+		ADC_value = HAL_ADC_GetValue(hadc);
+		printf("ADC Value is %d\n", ADC_value);
+		HAL_ADC_Start_IT (hadc);
+//	}
 }
 /* USER CODE END 0 */
 
@@ -108,18 +123,10 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  HAL_ADC_Start_IT (hadc);	// start ADC in interrupt mode
+
   while (1)
   {
-	  HAL_ADC_Start(&hadc1);
-
-	  if (HAL_ADC_PollForConversion(&hadc1, 1000) == HAL_OK)
-		  ADC_value = HAL_ADC_GetValue(&hadc1);
-
-	  printf("ADC Value is %d\n", ADC_value);
-
-	  HAL_ADC_Stop(&hadc1);
-
-	  HAL_Delay(1000);
 
     /* USER CODE END WHILE */
 
@@ -208,7 +215,7 @@ static void MX_ADC1_Init(void)
 
   /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
   */
-  sConfig.Channel = ADC_CHANNEL_1;
+  sConfig.Channel = ADC_CHANNEL_0;
   sConfig.Rank = 1;
   sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
@@ -230,6 +237,7 @@ static void MX_GPIO_Init(void)
 {
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
 }
