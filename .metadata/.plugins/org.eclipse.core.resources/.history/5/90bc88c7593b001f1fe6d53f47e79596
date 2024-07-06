@@ -1,0 +1,92 @@
+/**
+ ******************************************************************************
+ * @file           : main.c
+ * @author         : Danh21
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2024 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ *							REVISION HISTORY
+ * Version 1.0: read ADC by polling and send to SWV ITM data console
+ ******************************************************************************
+ */
+/* LIBRARIES */
+#include <stdint.h>
+#include <stm32f407xx.h>
+#include "Timer.h"
+#include "SystemClock.h"
+#include "ADC.h"
+#include "USART.h"
+
+
+
+/* VARS */
+TIM_TypeDef *pTIM = TIM1;
+ADC_TypeDef *pADC = ADC1;
+USART_TypeDef *pUSART = USART2;
+
+uint32_t ADC_data = 0;
+char result[20];
+
+
+
+/* PROTOTYPES */
+void GPIO_init();
+
+
+
+/* MACROES */
+//int _write(int file, char *ptr, int len)
+//{
+//  for (int DataIdx = 0; DataIdx < len; DataIdx++)
+//	  ITM_SendChar(*ptr++);
+//  return len;
+//}
+
+#define send_data(x) 	USART_transmit(pUSART, x);
+#define delay_ms(x)		Timer_delay_ms(pTIM, x)
+
+
+
+/* MAIN */
+int main()
+{
+	SystemClock_config();
+	GPIO_init();
+	Timer_init(pTIM);
+	ADC_Init(pADC);
+	USART_init(pUSART);
+
+	while(1)
+	{
+		ADC_Start_Polling(pADC, 1);
+		ADC_data = ADC_Read(pADC);
+		sprintf(result, "ADC value = %d\n", ADC_data);
+
+		send_data(result);
+		delay_ms(pTIM, 1000);
+//		 for(int i=0; i<500000; i++);
+	}
+}
+
+
+
+/* Initializing GPIO */
+void GPIO_init(void)
+{
+	RCC->AHB1ENR |= (1<<0);				// enable GPIOA clock
+	RCC->APB2ENR |= (1<<8);				// enable ADC1 clock
+
+	GPIOA->MODER |= (3<<2);				// analog for PA1
+	GPIOA->OSPEEDR |= (2<<2);			// high speed for PA1
+
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;	// IO port D clock enable
+		GPIOD->MODER |= GPIO_MODER_MODER13_0;	// General purpose output mode
+}
