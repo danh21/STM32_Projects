@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="SearchDialog">
-		<item key="PREVIOUS_PAGE" value="org.eclipse.cdt.ui.pdomSearchPage"/>
+		<item key="PREVIOUS_PAGE" value="org.eclipse.search.internal.ui.text.TextSearchPage"/>
 	</section>
 	<section name="Search">
 		<list key="Search.processedPageIds">
@@ -31,7 +31,11 @@
 		<item key="SEARCH_IN_BINARIES" value="false"/>
 		<item key="HISTORY_SIZE" value="0"/>
 		<section name="EXTENSIONS">
-			<item key="0" value="*.c"/>
+			<item key="0" value="*"/>
+			<item key="1" value="*.c"/>
 		</section>
+	</section>
+	<section name="org.eclipse.cdt.ui.pdomSearchViewPage">
+		<item key="showEnclosingDefinitions" value="true"/>
 	</section>
 </section>
