@@ -1,4 +1,4 @@
-23:42:20 **** Build of configuration Debug for project ADC_HAL ****
+20:51:57 **** Incremental Build of configuration Debug for project ADC_HAL ****
 make -j8 all 
 arm-none-eabi-size   ADC_HAL.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size   ADC_HAL.elf
 Finished building: default.size.stdout
  
 
-23:42:20 Build Finished. 0 errors, 0 warnings. (took 485ms)
+20:51:57 Build Finished. 0 errors, 0 warnings. (took 356ms)
 
