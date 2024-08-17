@@ -2800,17 +2800,17 @@ LOAD d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube
  .debug_macro   0x000000000001ec5e      0x1de ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
  .debug_macro   0x000000000001ee3c      0x1bb ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_wwdg.o
 
-.debug_line     0x0000000000000000     0x534c
- .debug_line    0x0000000000000000      0x794 ./Core/Src/main.o
- .debug_line    0x0000000000000794      0x6de ./Core/Src/stm32f4xx_hal_msp.o
- .debug_line    0x0000000000000e72      0x785 ./Core/Src/stm32f4xx_it.o
- .debug_line    0x00000000000015f7      0x744 ./Core/Src/system_stm32f4xx.o
- .debug_line    0x0000000000001d3b       0x88 ./Core/Startup/startup_stm32f407vetx.o
- .debug_line    0x0000000000001dc3      0x9aa ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
- .debug_line    0x000000000000276d      0xc59 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
- .debug_line    0x00000000000033c6      0xb1e ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
- .debug_line    0x0000000000003ee4      0xd24 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
- .debug_line    0x0000000000004c08      0x744 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_wwdg.o
+.debug_line     0x0000000000000000     0x534a
+ .debug_line    0x0000000000000000      0x792 ./Core/Src/main.o
+ .debug_line    0x0000000000000792      0x6de ./Core/Src/stm32f4xx_hal_msp.o
+ .debug_line    0x0000000000000e70      0x785 ./Core/Src/stm32f4xx_it.o
+ .debug_line    0x00000000000015f5      0x744 ./Core/Src/system_stm32f4xx.o
+ .debug_line    0x0000000000001d39       0x88 ./Core/Startup/startup_stm32f407vetx.o
+ .debug_line    0x0000000000001dc1      0x9aa ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
+ .debug_line    0x000000000000276b      0xc59 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
+ .debug_line    0x00000000000033c4      0xb1e ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
+ .debug_line    0x0000000000003ee2      0xd24 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
+ .debug_line    0x0000000000004c06      0x744 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_wwdg.o
 
 .debug_str      0x0000000000000000    0xbc4b5
  .debug_str     0x0000000000000000    0xbb03d ./Core/Src/main.o

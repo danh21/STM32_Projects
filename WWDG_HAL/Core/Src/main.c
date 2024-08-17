@@ -14,9 +14,8 @@
   * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   *							REVISION HISTORY
-  *	Version 1.0: test reset MCU, blink led if refresh WDG timer out of range
+  *	Version 1.0: test reset MCU, blink led if refresh WDG timer out of range. Follow readme to know more detail.
   *
-  *	Reference: https://controllerstech.com/iwdg-and-wwdg-in-stm32/
   ******************************************************************************
   */
 /* USER CODE END Header */
@@ -99,26 +98,14 @@ int main(void)
   HAL_Delay(500);
   /* USER CODE END 2 */
   MX_WWDG_Init();
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  /*
-	   * Choose prescaler, Tmax_ms and Tmin_ms randomly
-	   * Calculate counter and window value
-	   * Config in ioc
-	  	   * counter = (Tmax_ms * APBI CLK / 4096 * 2^WDGTB * 1000) + 64
-	  	   *		 = (53.248 * 16000000 / 4096 * 2^3 * 1000) + 64
-	  	   *		 = 90
-	  	   *
-	  	   * Window  = Counter - (Tmin_ms * APBI CLK / 4096 * 2^WDGTB * 1000)
-	  	   * 		 = 90 - (30.72 * 16000000 / 4096 * 2^3 * 1000)
-	  	   * 		 = 75
-	  	   *
-	  	   * */
+	  	  HAL_Delay(35);	// refresh WDG in range of timeout window 		=> not reset MCU
+//	  	  HAL_Delay(45);	// refresh WDG not in range of timeout window 	=> reset MCU
 
-//	  	  HAL_Delay(35);	// Tmin < ms < Tmax => refresh WDG in this range 	 => not reset MCU
-	  	  HAL_Delay(29);	// Tmin < ms < Tmax => refresh WDG out of this range => reset MCU
 	  	  HAL_WWDG_Refresh(&hwwdg);
 
     /* USER CODE END WHILE */
@@ -186,8 +173,8 @@ static void MX_WWDG_Init(void)
   /* USER CODE END WWDG_Init 1 */
   hwwdg.Instance = WWDG;
   hwwdg.Init.Prescaler = WWDG_PRESCALER_8;
-  hwwdg.Init.Window = 75;
-  hwwdg.Init.Counter = 90;
+  hwwdg.Init.Window = 69;
+  hwwdg.Init.Counter = 86;
   hwwdg.Init.EWIMode = WWDG_EWI_DISABLE;
   if (HAL_WWDG_Init(&hwwdg) != HAL_OK)
   {
