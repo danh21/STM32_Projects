@@ -14,11 +14,8 @@
   * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   *							REVISION HISTORY
-  *	Version 1.0: test reset MCU feature of IWDG. Once button is pressed, led is ON. After about 5s (config timeout), MCU resets and led is OFF.
-  * 	How to calculate timeout: timeout = prescaler * reload value / frequency of LSI clock
-  * 	Ref: https://tapit.vn/su-dung-watchdog-timer-tren-mcu-stm32f103c8t6/
+  *	Version 1.0: test reset MCU feature of IWDG.
   *
-  *	Reference: https://controllerstech.com/iwdg-and-wwdg-in-stm32/
   ******************************************************************************
   */
 /* USER CODE END Header */
