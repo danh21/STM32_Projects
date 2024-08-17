@@ -67,10 +67,7 @@ int _write(int file, char *ptr, int len)
   int DataIdx;
 
   for (DataIdx = 0; DataIdx < len; DataIdx++)
-  {
-   // __io_putchar(*ptr++);
 	  ITM_SendChar(*ptr++);
-  }
 
   return len;
 }
@@ -79,12 +76,9 @@ int _write(int file, char *ptr, int len)
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
-//	if (hadc->Instance == hadc1.Instance)
-//	{
-		ADC_value = HAL_ADC_GetValue(hadc);
-		printf("ADC Value is %d\n", ADC_value);
-		HAL_ADC_Start_IT (hadc);
-//	}
+	ADC_value = HAL_ADC_GetValue(hadc);
+	printf("ADC Value is %d\n", ADC_value);
+	HAL_ADC_Start_IT (hadc);
 }
 /* USER CODE END 0 */
 
