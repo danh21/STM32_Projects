@@ -16,7 +16,7 @@
  *							REVISION HISTORY
  * Version 1.0: read ADC by polling and send to console by UART
  * Version 1.1: read ADC by interrupt and send to console by UART
- * 		ref: https://www.youtube.com/watch?v=q8XSsTDAUiM
+ * Version 1.2: can use channel 0 - 15 of ADC1/2/3 to read ADC
  ******************************************************************************
  */
 /* LIBRARIES */
@@ -31,16 +31,12 @@
 
 /* GLOBAL VARS */
 TIM_TypeDef *pTIM = TIM1;
-ADC_TypeDef *pADC = ADC1;
+ADC_TypeDef *pADC = ADC3;
 USART_TypeDef *pUSART = USART2;
+uint32_t adc_channel = 11;
 
 uint32_t ADC_data = 0;
 char result[20];
-
-
-
-/* PROTOTYPES */
-void GPIO_init();
 
 
 
@@ -48,23 +44,15 @@ void GPIO_init();
 #define send_data(x) 	USART_transmit(pUSART, x);
 #define delay_ms(x)		Timer_delay_ms(pTIM, x)
 
-int _write(int file, char *ptr, int len)
-{
-	for (int DataIdx = 0; DataIdx < len; DataIdx++)
-		ITM_SendChar(*ptr++);
-	return len;
-}
-
 
 
 /* MAIN */
 int main()
 {
 	SystemClock_config();
-	GPIO_Init();
+	ADC_Init(pADC, adc_channel);
 	Timer_init(pTIM);
 	USART_init(pUSART);
-	ADC_Init(pADC);
 
 	ADC_Start_IT(pADC);
 
@@ -76,22 +64,12 @@ int main()
 
 
 
-/* Initializing GPIO */
-void GPIO_Init(void)
-{
-	RCC->AHB1ENR |= (1<<0);		// enable GPIOA clock
-	GPIOA->MODER |= (3<<2);		// analog for PA1
-	GPIOA->OSPEEDR |= (2<<2);	// high speed for PA1
-}
-
-
-
+/* ADC callback */
 void ADC_IRQHandler(void)
 {
-	uint32_t ADC_data = ADC_Read(ADC1);
-//	printf("The value of ADC is %ld\n", ADC_data);
+	uint32_t ADC_data = ADC_Read(pADC);
 	sprintf(result, "adc value = %d\n", ADC_data);
 	send_data(result);
 	delay_ms(1000);
-	ADC1->SR &= ~(1<<1);								// reset EOC bit
+	pADC->SR &= ~(1<<1);		// reset EOC bit
 }

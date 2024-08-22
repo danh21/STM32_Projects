@@ -20,13 +20,12 @@ void USART_init(USART_TypeDef *USART)
 
 	if (USART == USART2)
 	{
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;		// IO port A clock enable
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;		// IO port A clock enable
 
-		GPIOA->MODER |= GPIO_MODER_MODER2_1;		// alternate function for PA2
-		GPIOA->OSPEEDR |= GPIO_OSPEEDR_OSPEED2_1;	// high speed for PA2
-		GPIOA->AFR[0] |= (7<<8);					// USART2 mode for PA2
+		GPIOD->MODER |= (2<<10);					// alternate function for PD5
+		GPIOD->AFR[0] |= (7<<20);					// USART2 mode for PA2
 		/*
-		 * PA2 - TX
+		 * PD5 - USART2 TX
 		 * */
 
 		RCC->APB1ENR |= RCC_APB1ENR_USART2EN; 		// USART2 clock enable
