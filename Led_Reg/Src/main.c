@@ -19,26 +19,23 @@
  * Version 1.2: blink led by periodically using counter up timer
  *
  * Version 2.0: toggle led by button using polling technique
+ *
+ * Version 3.0: blink led by periodically using counter up timer; apply Led.h lib
  ******************************************************************************
  */
 /* LIBRARIES */
 #include <stdint.h>
 #include <stm32f407xx.h>
-#include "Timer.h"
 #include "SystemClock.h"
+#include "Timer.h"
+#include "Led.h"
 
 
 
-/* MACROES */
-#define led_on 		GPIOD->ODR |= 1<<13
-#define led_off		GPIOD->ODR &= ~(1<<13)
-#define led_is_off	(GPIOD->ODR & 1<<13) == 0
-#define toggle_led 	led_is_off ? led_on : (led_off)
-
-
-
-/* PROTOTYPE */
-void GPIO_init(void);
+/* CONFIG */
+TIM_TypeDef *TIM = TIM8;
+user_led led = LD3;
+uint32_t your_delay = 1000;
 
 
 
@@ -46,21 +43,12 @@ void GPIO_init(void);
 int main()
 {
 	SystemClock_config();
-	GPIO_init();
-	Timer1_init();
+	LED_init(led);
+	Timer_init(TIM);
 
 	while(1)
 	{
-		toggle_led;
-		Timer1_delay_ms(500);
+		toggle_led(led);
+		Timer_delay_ms(TIM, your_delay);
 	}
-}
-
-
-
-/* APIs */
-void GPIO_init(void)
-{
-	RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;	// IO port D clock enable
-	GPIOD->MODER |= GPIO_MODER_MODER13_0;	// General purpose output mode
 }
