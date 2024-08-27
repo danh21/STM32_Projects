@@ -368,10 +368,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
  80004d6:	88fb      	ldrh	r3, [r7, #6]
  80004d8:	2b01      	cmp	r3, #1
  80004da:	d104      	bne.n	80004e6 <HAL_GPIO_EXTI_Callback+0x1a>
+	{
 		toggle_led;
  80004dc:	f44f 5100 	mov.w	r1, #8192	; 0x2000
  80004e0:	4803      	ldr	r0, [pc, #12]	; (80004f0 <HAL_GPIO_EXTI_Callback+0x24>)
  80004e2:	f000 fca0 	bl	8000e26 <HAL_GPIO_TogglePin>
+	}
 }
  80004e6:	bf00      	nop
  80004e8:	3708      	adds	r7, #8

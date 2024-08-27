@@ -63,7 +63,9 @@ static void MX_GPIO_Init(void);
 /* USER CODE BEGIN 0 */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	if (GPIO_Pin == btn_Pin)
+	{
 		toggle_led;
+	}
 }
 /* USER CODE END 0 */
 
