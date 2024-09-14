@@ -44,20 +44,28 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-uint32_t sysclock = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+int _write(int file, char *ptr, int len)
+{
+  (void)file;
+  int DataIdx;
 
+  for (DataIdx = 0; DataIdx < len; DataIdx++)
+	  ITM_SendChar(*ptr++);
+
+  return len;
+}
 /* USER CODE END 0 */
 
 /**
@@ -94,20 +102,22 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  // HCLK frequency
+  printf("HCLK Frequency: %d\n", HAL_RCC_GetHCLKFreq());
+
+  // SYSCLK frequency
+  printf("SYSCLK Frequency: %d\n", HAL_RCC_GetSysClockFreq());
+
+  // PCLK1 frequency
+  printf("PCLK1 Frequency: %d\n", HAL_RCC_GetPCLK1Freq());
+
+  // PCLK2 frequency
+  printf("PCLK2 Frequency: %d\n", HAL_RCC_GetPCLK2Freq());
+
   while (1)
   {
     /* USER CODE END WHILE */
-	  // HCLK frequency
-	  HAL_RCC_GetHCLKFreq();
 
-	  // SYSCLK frequency
-	  sysclock = HAL_RCC_GetSysClockFreq();
-
-	  // PCLK1 frequency
-	  HAL_RCC_GetPCLK1Freq();
-
-	  // PCLK2 frequency
-	  HAL_RCC_GetPCLK2Freq();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -168,6 +178,7 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
 
 }
 
