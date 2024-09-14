@@ -52,7 +52,16 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+int _write(int file, char *ptr, int len)
+{
+  (void)file;
+  int DataIdx;
 
+  for (DataIdx = 0; DataIdx < len; DataIdx++)
+	  ITM_SendChar(*ptr++);
+
+  return len;
+}
 /* USER CODE END 0 */
 
 /**
