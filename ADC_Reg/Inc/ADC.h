@@ -3,6 +3,9 @@
  *
  *  Created on: Mar 11, 2024
  *      Author: danh21
+ *
+ *      				REVISION HISTORY
+ * Version 1.0: Config for ADC1/2/3
  */
 
 #ifndef ADC_H_

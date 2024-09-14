@@ -32,7 +32,7 @@
 /* GLOBAL VARS */
 TIM_TypeDef *pTIM = TIM1;
 ADC_TypeDef *pADC = ADC3;
-USART_TypeDef *pUSART = USART2;
+USART_TypeDef *pUSART = USART6;
 uint32_t adc_channel = 11;
 
 uint32_t ADC_data = 0;
