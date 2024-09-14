@@ -15,7 +15,7 @@
   *
   *							REVISION HISTORY
   *	Version 1.0: blink led by periodically
-  *
+  * Version 2.0: use button to toggle led by polling technique
   ******************************************************************************
   */
 /* USER CODE END Header */
@@ -39,7 +39,9 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define toggle_led 	HAL_GPIO_TogglePin(led_GPIO_Port, led_Pin)
+#define toggle_led 					HAL_GPIO_TogglePin(led_GPIO_Port, led_Pin)
+#define button_is_pressed 			(HAL_GPIO_ReadPin(button_GPIO_Port, button_Pin) == 1)
+#define waiting_button_is_released 	while (button_is_pressed)
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -96,8 +98,11 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  toggle_led;
-	  HAL_Delay(1000);
+	  if (button_is_pressed)
+	  {
+		  waiting_button_is_released;
+		  toggle_led;
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -156,11 +161,17 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(led_GPIO_Port, led_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : button_Pin */
+  GPIO_InitStruct.Pin = button_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(button_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : led_Pin */
   GPIO_InitStruct.Pin = led_Pin;
