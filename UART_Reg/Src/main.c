@@ -27,7 +27,7 @@
 
 
 /* VARS */
-USART_TypeDef *USART = USART2;
+USART_TypeDef *USART = USART6;
 TIM_TypeDef *TIM = TIM1;
 
 
