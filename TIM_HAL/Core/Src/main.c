@@ -15,6 +15,7 @@
   *
   *							REVISION HISTORY
   *	Version 1.0: blink led periodically by applying upcounting mode
+  *	Version 1.1: blink led periodically by applying upcounting mode and interrupt
   *
   ******************************************************************************
   */
@@ -34,6 +35,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define yourDelay 1000	// ms
 
 /* USER CODE END PD */
 
@@ -47,7 +49,7 @@
 TIM_HandleTypeDef htim1;
 
 /* USER CODE BEGIN PV */
-char state = 0;
+uint16_t cnt = 0;
 
 /* USER CODE END PV */
 
@@ -56,16 +58,19 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM1_Init(void);
 /* USER CODE BEGIN PFP */
-void delay_ms(int ms);
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void delay_ms(int ms)
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	__HAL_TIM_SET_COUNTER(&htim1, 0);			 // set the counter value to 0
-	while (__HAL_TIM_GET_COUNTER(&htim1) < ms);	 // wait for the counter to reach threshold
+	if (htim->Instance == TIM1) {
+		if (++cnt == yourDelay) {
+			cnt = 0;
+			toggle_led;
+		}
+	}
 }
 
 /* USER CODE END 0 */
@@ -100,19 +105,14 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_Base_Start(&htim1);		// start timer base
+  HAL_TIM_Base_Start_IT(&htim1);		// start timer base in interrupt mode
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  toggle_led;
 
-//	  state = ~state;
-//	  HAL_GPIO_WritePin(led_GPIO_Port, led_Pin, state);
-
-	  delay_ms(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -180,9 +180,9 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 16000;
+  htim1.Init.Prescaler = 100;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 65535;
+  htim1.Init.Period = 159;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
