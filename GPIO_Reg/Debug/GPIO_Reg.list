@@ -29,23 +29,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  12 .ARM.attributes 00000030  00000000  00000000  00020004  2**0
                   CONTENTS, READONLY
- 13 .debug_info   00000579  00000000  00000000  00020034  2**0
+ 13 .debug_info   0000055c  00000000  00000000  00020034  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 000001ca  00000000  00000000  000205ad  2**0
+ 14 .debug_abbrev 000001b0  00000000  00000000  00020590  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 00000078  00000000  00000000  00020778  2**3
+ 15 .debug_aranges 00000078  00000000  00000000  00020740  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_ranges 00000060  00000000  00000000  000207f0  2**3
+ 16 .debug_ranges 00000060  00000000  00000000  000207b8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  000180d9  00000000  00000000  00020850  2**0
+ 17 .debug_macro  000180eb  00000000  00000000  00020818  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   000006a0  00000000  00000000  00038929  2**0
+ 18 .debug_line   0000069e  00000000  00000000  00038903  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000879d1  00000000  00000000  00038fc9  2**0
+ 19 .debug_str    00087a01  00000000  00000000  00038fa1  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000050  00000000  00000000  000c099a  2**0
+ 20 .comment      00000050  00000000  00000000  000c09a2  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  00000120  00000000  00000000  000c09ec  2**2
+ 21 .debug_frame  00000120  00000000  00000000  000c09f4  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -224,7 +224,7 @@ void LED_init(user_led LD)
  80002d0:	40020c00 	.word	0x40020c00
 
 080002d4 <main>:
-#define yourDelay 10000		// stuff delay
+
 
 
 /* MAIN */
@@ -254,7 +254,7 @@ int main()
  80002f6:	2b00      	cmp	r3, #0
  80002f8:	d10b      	bne.n	8000312 <main+0x3e>
  80002fa:	4b0f      	ldr	r3, [pc, #60]	; (8000338 <main+0x64>)
- 80002fc:	695b      	ldr	r3, [r3, #20]
+ 80002fc:	699b      	ldr	r3, [r3, #24]
  80002fe:	4a0d      	ldr	r2, [pc, #52]	; (8000334 <main+0x60>)
  8000300:	7812      	ldrb	r2, [r2, #0]
  8000302:	4611      	mov	r1, r2
@@ -263,24 +263,23 @@ int main()
  8000308:	4611      	mov	r1, r2
  800030a:	4a0b      	ldr	r2, [pc, #44]	; (8000338 <main+0x64>)
  800030c:	430b      	orrs	r3, r1
- 800030e:	6153      	str	r3, [r2, #20]
+ 800030e:	6193      	str	r3, [r2, #24]
  8000310:	e00b      	b.n	800032a <main+0x56>
  8000312:	4b09      	ldr	r3, [pc, #36]	; (8000338 <main+0x64>)
- 8000314:	695b      	ldr	r3, [r3, #20]
+ 8000314:	699b      	ldr	r3, [r3, #24]
  8000316:	4a07      	ldr	r2, [pc, #28]	; (8000334 <main+0x60>)
  8000318:	7812      	ldrb	r2, [r2, #0]
- 800031a:	4611      	mov	r1, r2
- 800031c:	2201      	movs	r2, #1
- 800031e:	408a      	lsls	r2, r1
- 8000320:	43d2      	mvns	r2, r2
+ 800031a:	3210      	adds	r2, #16
+ 800031c:	2101      	movs	r1, #1
+ 800031e:	fa01 f202 	lsl.w	r2, r1, r2
  8000322:	4611      	mov	r1, r2
  8000324:	4a04      	ldr	r2, [pc, #16]	; (8000338 <main+0x64>)
- 8000326:	400b      	ands	r3, r1
- 8000328:	6153      	str	r3, [r2, #20]
+ 8000326:	430b      	orrs	r3, r1
+ 8000328:	6193      	str	r3, [r2, #24]
 		delay(yourDelay);
  800032a:	f242 7010 	movw	r0, #10000	; 0x2710
  800032e:	f000 f805 	bl	800033c <delay>
-	{
+		toggle_led(led);
  8000332:	e7d8      	b.n	80002e6 <main+0x12>
  8000334:	20000000 	.word	0x20000000
  8000338:	40020c00 	.word	0x40020c00

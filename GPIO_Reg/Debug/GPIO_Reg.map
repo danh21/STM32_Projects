@@ -606,13 +606,13 @@ LOAD d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube
 LOAD d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a
 LOAD d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m+fp/hard\libgcc.a
 
-.debug_info     0x0000000000000000      0x579
- .debug_info    0x0000000000000000      0x557 ./Src/main.o
- .debug_info    0x0000000000000557       0x22 ./Startup/startup_stm32f407vetx.o
+.debug_info     0x0000000000000000      0x55c
+ .debug_info    0x0000000000000000      0x53a ./Src/main.o
+ .debug_info    0x000000000000053a       0x22 ./Startup/startup_stm32f407vetx.o
 
-.debug_abbrev   0x0000000000000000      0x1ca
- .debug_abbrev  0x0000000000000000      0x1b8 ./Src/main.o
- .debug_abbrev  0x00000000000001b8       0x12 ./Startup/startup_stm32f407vetx.o
+.debug_abbrev   0x0000000000000000      0x1b0
+ .debug_abbrev  0x0000000000000000      0x19e ./Src/main.o
+ .debug_abbrev  0x000000000000019e       0x12 ./Startup/startup_stm32f407vetx.o
 
 .debug_aranges  0x0000000000000000       0x78
  .debug_aranges
@@ -624,7 +624,7 @@ LOAD d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube
  .debug_ranges  0x0000000000000000       0x40 ./Src/main.o
  .debug_ranges  0x0000000000000040       0x20 ./Startup/startup_stm32f407vetx.o
 
-.debug_macro    0x0000000000000000    0x180d9
+.debug_macro    0x0000000000000000    0x180eb
  .debug_macro   0x0000000000000000       0xd8 ./Src/main.o
  .debug_macro   0x00000000000000d8      0xa7e ./Src/main.o
  .debug_macro   0x0000000000000b56       0x22 ./Src/main.o
@@ -640,16 +640,16 @@ LOAD d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube
  .debug_macro   0x00000000000010e9     0x102d ./Src/main.o
  .debug_macro   0x0000000000002116      0x11f ./Src/main.o
  .debug_macro   0x0000000000002235    0x15e82 ./Src/main.o
- .debug_macro   0x00000000000180b7       0x22 ./Src/main.o
+ .debug_macro   0x00000000000180b7       0x34 ./Src/main.o
 
-.debug_line     0x0000000000000000      0x6a0
- .debug_line    0x0000000000000000      0x61c ./Src/main.o
- .debug_line    0x000000000000061c       0x84 ./Startup/startup_stm32f407vetx.o
+.debug_line     0x0000000000000000      0x69e
+ .debug_line    0x0000000000000000      0x61a ./Src/main.o
+ .debug_line    0x000000000000061a       0x84 ./Startup/startup_stm32f407vetx.o
 
-.debug_str      0x0000000000000000    0x879d1
- .debug_str     0x0000000000000000    0x879a0 ./Src/main.o
-                                      0x87b16 (size before relaxing)
- .debug_str     0x00000000000879a0       0x31 ./Startup/startup_stm32f407vetx.o
+.debug_str      0x0000000000000000    0x87a01
+ .debug_str     0x0000000000000000    0x879d0 ./Src/main.o
+                                      0x87b4b (size before relaxing)
+ .debug_str     0x00000000000879d0       0x31 ./Startup/startup_stm32f407vetx.o
                                          0x63 (size before relaxing)
 
 .comment        0x0000000000000000       0x50

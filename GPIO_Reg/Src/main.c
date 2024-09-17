@@ -15,6 +15,7 @@
  *
  *							REVISION HISTORY
  * Version 1.0: blink led periodically using ODR register
+ * Version 1.1: blink led periodically using BSRR register
  *
  ******************************************************************************
  */
@@ -27,8 +28,13 @@
 
 
 /* CONFIG */
-user_led led = LD3;			// user led (LD3 / LD4 / LD5 / LD6)
-#define yourDelay 10000		// stuff delay
+user_led led = LD3;						// user led (LD3 / LD4 / LD5 / LD6)
+#define yourDelay 10000					// stuff delay
+
+
+
+/* PROTOTYPE */
+void delay(int a);
 
 
 
