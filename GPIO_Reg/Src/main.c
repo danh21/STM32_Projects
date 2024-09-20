@@ -17,19 +17,27 @@
  * Version 1.0: blink led periodically using ODR register
  * Version 1.1: blink led periodically using BSRR register
  *
+ * Version 2.0: toggle led by pressing button using polling technique
+ *
  ******************************************************************************
  */
+
 /* LIBRARIES */
 #include <stdint.h>
 #include <stm32f407xx.h>
 #include "SystemClock.h"
 #include "Led.h"
+#include "Button.h"
 
 
 
 /* CONFIG */
-user_led led = LD3;						// user led (LD3 / LD4 / LD5 / LD6)
-#define yourDelay 10000					// stuff delay
+user_led led = LD4;				// user led (LD3 / LD4 / LD5 / LD6)
+//#define yourDelay 10000			// stuff delay
+
+#define port_btn GPIOA			// built-in button on board is PA0
+#define pin_bn 0
+#define pull_btn pull_up		// pull-down resistor
 
 
 
@@ -43,11 +51,15 @@ int main()
 {
 	SystemClock_config();
 	LED_init(led);
+	Btn_init(port_btn);
 
 	while(1)
 	{
-		toggle_led(led);
-		delay(yourDelay);
+		if (btn_isPressed(port_btn, pin_bn, pull_btn))
+		{
+			waitUntil_btn_isReleased(port_btn, pin_bn, pull_btn);
+			toggle_led(led);
+		}
 	}
 }
 
