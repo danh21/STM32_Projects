@@ -1,0 +1,5 @@
+../Core/Src/I2C_LCD.c:27:6:i2c_lcd_send_cmd	32	static
+../Core/Src/I2C_LCD.c:41:6:i2c_lcd_send_char	32	static
+../Core/Src/I2C_LCD.c:55:6:i2c_lcd_init	16	static
+../Core/Src/I2C_LCD.c:71:6:i2c_lcd_send_string	24	static
+../Core/Src/I2C_LCD.c:78:6:i2c_lcd_set_position	24	static
