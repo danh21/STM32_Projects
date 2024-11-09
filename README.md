@@ -2,6 +2,7 @@
 - All projects related to STM32F407 uC, include programming using HAL and register programming.
 - In each project, readme.doc describes setup to test project
 - Always open 0_base_HAL as base project. Register projects include libraries from this project.
+- 0_Library includes driver source of modules (in-progress).
   
 ### Software
 - STM32CubeIDE
@@ -11,6 +12,7 @@
 - Board STM32F407
 - CP2102 USB to TTL UART Serial Converter Module
 - Variable resistor
+- Module I2C PCF8574 + LCD 20x4
 
 # Setting
 ### Preferences
