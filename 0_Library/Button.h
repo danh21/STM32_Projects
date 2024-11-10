@@ -1,64 +1,68 @@
-/*
- * Button.h
+/**
+ ******************************************************************************
+ * @file           : Button.h
+ * @author         : Danh Phan
+ * @brief          : Library to interact to Button
+ ******************************************************************************
+ * @attention
  *
- * Created on: Sep 20, 2024
- * Author: danh21
+ * Copyright (c) 2024 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
  *							REVISION HISTORY
- * Version 1.0: Config 1 user button
+ * Version 1.0.0: Initial release
+ ******************************************************************************
  */
-
 #ifndef BUTTON_H_
 #define BUTTON_H_
 
 
-
-/* Libraries */
+// Include libraries
+#include <stm32f407xx.h>
 #include <stdbool.h>
 
 
+// Macroes
 
-/* Data types */
+
+// Data types
 typedef enum {
 	pull_down,
 	pull_up
 } GPIO_pull;
 
 
-
-/* APIs */
-
-// Initialize port of button
-void Btn_init(GPIO_TypeDef* port)
-{
-	if (port == GPIOA)
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;	// IO port A clock enable
-	else if (port == GPIOB)
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;	// IO port B clock enable
-	else if (port == GPIOC)
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;	// IO port C clock enable
-	else if (port == GPIOD)
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;	// IO port D clock enable
-	else if (port == GPIOE)
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOEEN;	// IO port E clock enable
-}
+// Prototypes
+/**
+  * @brief  Initialize port of button
+  * @param  pPort: pointer to GPIO port
+  * @retval None
+  */
+void Btn_init(GPIO_TypeDef* pPort);
 
 
-// Check whether button is pressed or not
-_Bool btn_isPressed (GPIO_TypeDef* port, uint8_t pin, GPIO_pull pull)
-{
-	if (pull == pull_down)
-		return ((port->IDR & (1<<pin)) == 1);
-	else
-		return ((port->IDR & (1<<pin)) == 0);
-}
+/**
+  * @brief  Check whether button is pressed or not
+  * @param  pPort: pointer to GPIO port
+  * @param  pin: pin of port
+  * @param  pull: pull-up or pull-down
+  * @retval status of button
+  */
+_Bool btn_isPressed (GPIO_TypeDef* pPort, uint8_t pin, GPIO_pull pull);
 
 
-// Wait until button is released
-void waitUntil_btn_isReleased(GPIO_TypeDef* port, uint8_t pin, GPIO_pull pull)
-{
-	while (btn_isPressed (port, pin, pull));
-}
-
+/**
+  * @brief  Wait until button is released
+  * @param  pPort: pointer to GPIO port
+  * @param  pin: pin of port
+  * @param  pull: pull-up or pull-down
+  * @retval status of button
+  */
+void waitUntil_btn_isReleased(GPIO_TypeDef* pPort, uint8_t pin, GPIO_pull pull);
 
 
 #endif /* BUTTON_H_ */

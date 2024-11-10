@@ -1,8 +1,8 @@
 /**
  ******************************************************************************
- * @file           : USART.h
+ * @file           : Led.c
  * @author         : Danh Phan
- * @brief          : Library to interact to USART
+ * @brief          : Library to interact to Led
  ******************************************************************************
  * @attention
  *
@@ -17,35 +17,33 @@
  * Version 1.0.0: Initial release
  ******************************************************************************
  */
-#ifndef USART_H_
-#define USART_H_
 
 
 // Include libraries
-#include <stm32f407xx.h>
-#include "SystemClock.h"
+#include "Led.h"
 
 
-// Macroes
-#define baudrate 115200
+// APIs
+void LED_init(user_led LD)
+{
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;	// IO port D clock enable
 
-
-// Prototypes
-/**
-  * @brief  Initialize UART
-  * @param  pUSART: pointer to USART instance
-  * @retval None
-  */
-void USART_init(USART_TypeDef *pUSART);
-
-
-/**
-  * @brief  transmit data
-  * @param  pUSART: pointer to USART instance
-  * @param  pData: pointer to data
-  * @retval None
-  */
-void USART_transmit(USART_TypeDef *pUSART, char *pData);
-
-
-#endif /* USART_H_ */
+	// set general purpose output mode
+	switch (LD)
+	{
+		case LD3:
+			GPIOD->MODER |= GPIO_MODER_MODER13_0;
+	 		break;
+		case LD4:
+			GPIOD->MODER |= GPIO_MODER_MODER12_0;
+			break;
+		case LD5:
+			GPIOD->MODER |= GPIO_MODER_MODER14_0;
+			break;
+		case LD6:
+			GPIOD->MODER |= GPIO_MODER_MODER15_0;
+			break;
+		default:
+			break;
+	}
+}
