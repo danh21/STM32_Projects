@@ -14,8 +14,8 @@
  * If no LICENSE file comes with this software, it is provided AS-IS.
  *
  *							REVISION HISTORY
- * Version 1.0: blink led periodically using upcounting mode
- *
+ * Version 1.0.0: blink led periodically using upcounting mode
+ * Version 1.0.1: refactor code, separate .c and .h files
  ******************************************************************************
  */
 

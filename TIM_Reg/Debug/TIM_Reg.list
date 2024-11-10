@@ -29,23 +29,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  12 .ARM.attributes 00000030  00000000  00000000  0002000c  2**0
                   CONTENTS, READONLY
- 13 .debug_info   000006e5  00000000  00000000  0002003c  2**0
+ 13 .debug_info   00000e95  00000000  00000000  0002003c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 000001cc  00000000  00000000  00020721  2**0
+ 14 .debug_abbrev 00000430  00000000  00000000  00020ed1  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 00000080  00000000  00000000  000208f0  2**3
+ 15 .debug_aranges 000000c8  00000000  00000000  00021308  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_ranges 00000068  00000000  00000000  00020970  2**3
+ 16 .debug_ranges 00000080  00000000  00000000  000213d0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  00018108  00000000  00000000  000209d8  2**0
+ 17 .debug_macro  000183a5  00000000  00000000  00021450  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0000077b  00000000  00000000  00038ae0  2**0
+ 18 .debug_line   000015d2  00000000  00000000  000397f5  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    00087a8a  00000000  00000000  0003925b  2**0
+ 19 .debug_str    00087ac0  00000000  00000000  0003adc7  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000050  00000000  00000000  000c0ce5  2**0
+ 20 .comment      00000050  00000000  00000000  000c2887  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  00000144  00000000  00000000  000c0d38  2**2
+ 21 .debug_frame  00000174  00000000  00000000  000c28d8  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -78,229 +78,223 @@ Disassembly of section .text:
  80001e0:	20000010 	.word	0x20000010
  80001e4:	080006b8 	.word	0x080006b8
 
-080001e8 <SystemClock_config>:
+080001e8 <LED_init>:
+#include "Led.h"
 
-/*
- * Initialize default system clock
- * */
-void SystemClock_config()
+
+// APIs
+void LED_init(user_led LD)
 {
  80001e8:	b480      	push	{r7}
- 80001ea:	af00      	add	r7, sp, #0
-	RCC->CR |= RCC_CR_HSION;				// enable HSI
- 80001ec:	4b15      	ldr	r3, [pc, #84]	; (8000244 <SystemClock_config+0x5c>)
- 80001ee:	681b      	ldr	r3, [r3, #0]
- 80001f0:	4a14      	ldr	r2, [pc, #80]	; (8000244 <SystemClock_config+0x5c>)
- 80001f2:	f043 0301 	orr.w	r3, r3, #1
- 80001f6:	6013      	str	r3, [r2, #0]
-	while (!(RCC->CR & RCC_CR_HSIRDY));		// see that HSI is ready or not
- 80001f8:	bf00      	nop
- 80001fa:	4b12      	ldr	r3, [pc, #72]	; (8000244 <SystemClock_config+0x5c>)
- 80001fc:	681b      	ldr	r3, [r3, #0]
- 80001fe:	f003 0302 	and.w	r3, r3, #2
- 8000202:	2b00      	cmp	r3, #0
- 8000204:	d0f9      	beq.n	80001fa <SystemClock_config+0x12>
+ 80001ea:	b083      	sub	sp, #12
+ 80001ec:	af00      	add	r7, sp, #0
+ 80001ee:	4603      	mov	r3, r0
+ 80001f0:	71fb      	strb	r3, [r7, #7]
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;	// IO port D clock enable
+ 80001f2:	4b1c      	ldr	r3, [pc, #112]	; (8000264 <LED_init+0x7c>)
+ 80001f4:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+ 80001f6:	4a1b      	ldr	r2, [pc, #108]	; (8000264 <LED_init+0x7c>)
+ 80001f8:	f043 0308 	orr.w	r3, r3, #8
+ 80001fc:	6313      	str	r3, [r2, #48]	; 0x30
 
-	// Power regulator
-	PWR->CR |= PWR_CR_VOS;
- 8000206:	4b10      	ldr	r3, [pc, #64]	; (8000248 <SystemClock_config+0x60>)
- 8000208:	681b      	ldr	r3, [r3, #0]
- 800020a:	4a0f      	ldr	r2, [pc, #60]	; (8000248 <SystemClock_config+0x60>)
- 800020c:	f443 4380 	orr.w	r3, r3, #16384	; 0x4000
- 8000210:	6013      	str	r3, [r2, #0]
-
-	// Flash latency setup
-	FLASH->ACR |= FLASH_ACR_DCEN | FLASH_ACR_ICEN | FLASH_ACR_PRFTEN | FLASH_ACR_LATENCY_5WS;
- 8000212:	4b0e      	ldr	r3, [pc, #56]	; (800024c <SystemClock_config+0x64>)
- 8000214:	681b      	ldr	r3, [r3, #0]
- 8000216:	4a0d      	ldr	r2, [pc, #52]	; (800024c <SystemClock_config+0x64>)
- 8000218:	f443 63e0 	orr.w	r3, r3, #1792	; 0x700
- 800021c:	f043 0305 	orr.w	r3, r3, #5
- 8000220:	6013      	str	r3, [r2, #0]
-
-	// HSI oscillator used as system clock
-	RCC->CFGR |= RCC_CFGR_SW_HSI;
- 8000222:	4b08      	ldr	r3, [pc, #32]	; (8000244 <SystemClock_config+0x5c>)
- 8000224:	4a07      	ldr	r2, [pc, #28]	; (8000244 <SystemClock_config+0x5c>)
- 8000226:	689b      	ldr	r3, [r3, #8]
- 8000228:	6093      	str	r3, [r2, #8]
-	while ((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_HSI);
- 800022a:	bf00      	nop
- 800022c:	4b05      	ldr	r3, [pc, #20]	; (8000244 <SystemClock_config+0x5c>)
- 800022e:	689b      	ldr	r3, [r3, #8]
- 8000230:	f003 030c 	and.w	r3, r3, #12
- 8000234:	2b00      	cmp	r3, #0
- 8000236:	d1f9      	bne.n	800022c <SystemClock_config+0x44>
+	// set general purpose output mode
+	switch (LD)
+ 80001fe:	79fb      	ldrb	r3, [r7, #7]
+ 8000200:	3b0c      	subs	r3, #12
+ 8000202:	2b03      	cmp	r3, #3
+ 8000204:	d826      	bhi.n	8000254 <LED_init+0x6c>
+ 8000206:	a201      	add	r2, pc, #4	; (adr r2, 800020c <LED_init+0x24>)
+ 8000208:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
+ 800020c:	0800022b 	.word	0x0800022b
+ 8000210:	0800021d 	.word	0x0800021d
+ 8000214:	08000239 	.word	0x08000239
+ 8000218:	08000247 	.word	0x08000247
+	{
+		case LD3:
+			GPIOD->MODER |= GPIO_MODER_MODER13_0;
+ 800021c:	4b12      	ldr	r3, [pc, #72]	; (8000268 <LED_init+0x80>)
+ 800021e:	681b      	ldr	r3, [r3, #0]
+ 8000220:	4a11      	ldr	r2, [pc, #68]	; (8000268 <LED_init+0x80>)
+ 8000222:	f043 6380 	orr.w	r3, r3, #67108864	; 0x4000000
+ 8000226:	6013      	str	r3, [r2, #0]
+	 		break;
+ 8000228:	e015      	b.n	8000256 <LED_init+0x6e>
+		case LD4:
+			GPIOD->MODER |= GPIO_MODER_MODER12_0;
+ 800022a:	4b0f      	ldr	r3, [pc, #60]	; (8000268 <LED_init+0x80>)
+ 800022c:	681b      	ldr	r3, [r3, #0]
+ 800022e:	4a0e      	ldr	r2, [pc, #56]	; (8000268 <LED_init+0x80>)
+ 8000230:	f043 7380 	orr.w	r3, r3, #16777216	; 0x1000000
+ 8000234:	6013      	str	r3, [r2, #0]
+			break;
+ 8000236:	e00e      	b.n	8000256 <LED_init+0x6e>
+		case LD5:
+			GPIOD->MODER |= GPIO_MODER_MODER14_0;
+ 8000238:	4b0b      	ldr	r3, [pc, #44]	; (8000268 <LED_init+0x80>)
+ 800023a:	681b      	ldr	r3, [r3, #0]
+ 800023c:	4a0a      	ldr	r2, [pc, #40]	; (8000268 <LED_init+0x80>)
+ 800023e:	f043 5380 	orr.w	r3, r3, #268435456	; 0x10000000
+ 8000242:	6013      	str	r3, [r2, #0]
+			break;
+ 8000244:	e007      	b.n	8000256 <LED_init+0x6e>
+		case LD6:
+			GPIOD->MODER |= GPIO_MODER_MODER15_0;
+ 8000246:	4b08      	ldr	r3, [pc, #32]	; (8000268 <LED_init+0x80>)
+ 8000248:	681b      	ldr	r3, [r3, #0]
+ 800024a:	4a07      	ldr	r2, [pc, #28]	; (8000268 <LED_init+0x80>)
+ 800024c:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
+ 8000250:	6013      	str	r3, [r2, #0]
+			break;
+ 8000252:	e000      	b.n	8000256 <LED_init+0x6e>
+		default:
+			break;
+ 8000254:	bf00      	nop
+	}
 }
- 8000238:	bf00      	nop
- 800023a:	bf00      	nop
- 800023c:	46bd      	mov	sp, r7
- 800023e:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8000242:	4770      	bx	lr
- 8000244:	40023800 	.word	0x40023800
- 8000248:	40007000 	.word	0x40007000
- 800024c:	40023c00 	.word	0x40023c00
-
-08000250 <Get_HCLK_freq>:
-
-/*
- * Returns the HCLK frequency
- */
-uint32_t Get_HCLK_freq(void)
-{
- 8000250:	b480      	push	{r7}
- 8000252:	af00      	add	r7, sp, #0
-  return SystemCoreClock;
- 8000254:	4b03      	ldr	r3, [pc, #12]	; (8000264 <Get_HCLK_freq+0x14>)
- 8000256:	681b      	ldr	r3, [r3, #0]
-}
- 8000258:	4618      	mov	r0, r3
+ 8000256:	bf00      	nop
+ 8000258:	370c      	adds	r7, #12
  800025a:	46bd      	mov	sp, r7
  800025c:	f85d 7b04 	ldr.w	r7, [sp], #4
  8000260:	4770      	bx	lr
  8000262:	bf00      	nop
- 8000264:	20000000 	.word	0x20000000
+ 8000264:	40023800 	.word	0x40023800
+ 8000268:	40020c00 	.word	0x40020c00
 
-08000268 <Get_PCLK1_freq>:
+0800026c <SystemClock_config>:
+const uint8_t APBPrescTable[8]  = {0, 0, 0, 0, 1, 2, 3, 4};
 
-/*
- * Returns the PCLK1 frequency
- */
+
+// APIs
+void SystemClock_config(void)
+{
+ 800026c:	b480      	push	{r7}
+ 800026e:	af00      	add	r7, sp, #0
+	RCC->CR |= RCC_CR_HSION;				// enable HSI
+ 8000270:	4b15      	ldr	r3, [pc, #84]	; (80002c8 <SystemClock_config+0x5c>)
+ 8000272:	681b      	ldr	r3, [r3, #0]
+ 8000274:	4a14      	ldr	r2, [pc, #80]	; (80002c8 <SystemClock_config+0x5c>)
+ 8000276:	f043 0301 	orr.w	r3, r3, #1
+ 800027a:	6013      	str	r3, [r2, #0]
+	while (!(RCC->CR & RCC_CR_HSIRDY));		// see that HSI is ready or not
+ 800027c:	bf00      	nop
+ 800027e:	4b12      	ldr	r3, [pc, #72]	; (80002c8 <SystemClock_config+0x5c>)
+ 8000280:	681b      	ldr	r3, [r3, #0]
+ 8000282:	f003 0302 	and.w	r3, r3, #2
+ 8000286:	2b00      	cmp	r3, #0
+ 8000288:	d0f9      	beq.n	800027e <SystemClock_config+0x12>
+
+	// Power regulator
+	PWR->CR |= PWR_CR_VOS;
+ 800028a:	4b10      	ldr	r3, [pc, #64]	; (80002cc <SystemClock_config+0x60>)
+ 800028c:	681b      	ldr	r3, [r3, #0]
+ 800028e:	4a0f      	ldr	r2, [pc, #60]	; (80002cc <SystemClock_config+0x60>)
+ 8000290:	f443 4380 	orr.w	r3, r3, #16384	; 0x4000
+ 8000294:	6013      	str	r3, [r2, #0]
+
+	// Flash latency setup
+	FLASH->ACR |= FLASH_ACR_DCEN | FLASH_ACR_ICEN | FLASH_ACR_PRFTEN | FLASH_ACR_LATENCY_5WS;
+ 8000296:	4b0e      	ldr	r3, [pc, #56]	; (80002d0 <SystemClock_config+0x64>)
+ 8000298:	681b      	ldr	r3, [r3, #0]
+ 800029a:	4a0d      	ldr	r2, [pc, #52]	; (80002d0 <SystemClock_config+0x64>)
+ 800029c:	f443 63e0 	orr.w	r3, r3, #1792	; 0x700
+ 80002a0:	f043 0305 	orr.w	r3, r3, #5
+ 80002a4:	6013      	str	r3, [r2, #0]
+
+	// HSI oscillator used as system clock
+	RCC->CFGR |= RCC_CFGR_SW_HSI;
+ 80002a6:	4b08      	ldr	r3, [pc, #32]	; (80002c8 <SystemClock_config+0x5c>)
+ 80002a8:	4a07      	ldr	r2, [pc, #28]	; (80002c8 <SystemClock_config+0x5c>)
+ 80002aa:	689b      	ldr	r3, [r3, #8]
+ 80002ac:	6093      	str	r3, [r2, #8]
+	while ((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_HSI);
+ 80002ae:	bf00      	nop
+ 80002b0:	4b05      	ldr	r3, [pc, #20]	; (80002c8 <SystemClock_config+0x5c>)
+ 80002b2:	689b      	ldr	r3, [r3, #8]
+ 80002b4:	f003 030c 	and.w	r3, r3, #12
+ 80002b8:	2b00      	cmp	r3, #0
+ 80002ba:	d1f9      	bne.n	80002b0 <SystemClock_config+0x44>
+}
+ 80002bc:	bf00      	nop
+ 80002be:	bf00      	nop
+ 80002c0:	46bd      	mov	sp, r7
+ 80002c2:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80002c6:	4770      	bx	lr
+ 80002c8:	40023800 	.word	0x40023800
+ 80002cc:	40007000 	.word	0x40007000
+ 80002d0:	40023c00 	.word	0x40023c00
+
+080002d4 <Get_HCLK_freq>:
+
+
+uint32_t Get_HCLK_freq(void)
+{
+ 80002d4:	b480      	push	{r7}
+ 80002d6:	af00      	add	r7, sp, #0
+  return SystemCoreClock;
+ 80002d8:	4b03      	ldr	r3, [pc, #12]	; (80002e8 <Get_HCLK_freq+0x14>)
+ 80002da:	681b      	ldr	r3, [r3, #0]
+}
+ 80002dc:	4618      	mov	r0, r3
+ 80002de:	46bd      	mov	sp, r7
+ 80002e0:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80002e4:	4770      	bx	lr
+ 80002e6:	bf00      	nop
+ 80002e8:	20000000 	.word	0x20000000
+
+080002ec <Get_PCLK1_freq>:
+
+
 uint32_t Get_PCLK1_freq(void)
 {
- 8000268:	b580      	push	{r7, lr}
- 800026a:	af00      	add	r7, sp, #0
+ 80002ec:	b580      	push	{r7, lr}
+ 80002ee:	af00      	add	r7, sp, #0
   /* Get HCLK source and Compute PCLK1 frequency ---------------------------*/
   return (Get_HCLK_freq() >> APBPrescTable[(RCC->CFGR & RCC_CFGR_PPRE1)>> RCC_CFGR_PPRE1_Pos]);
- 800026c:	f7ff fff0 	bl	8000250 <Get_HCLK_freq>
- 8000270:	4602      	mov	r2, r0
- 8000272:	4b05      	ldr	r3, [pc, #20]	; (8000288 <Get_PCLK1_freq+0x20>)
- 8000274:	689b      	ldr	r3, [r3, #8]
- 8000276:	0a9b      	lsrs	r3, r3, #10
- 8000278:	f003 0307 	and.w	r3, r3, #7
- 800027c:	4903      	ldr	r1, [pc, #12]	; (800028c <Get_PCLK1_freq+0x24>)
- 800027e:	5ccb      	ldrb	r3, [r1, r3]
- 8000280:	fa22 f303 	lsr.w	r3, r2, r3
+ 80002f0:	f7ff fff0 	bl	80002d4 <Get_HCLK_freq>
+ 80002f4:	4602      	mov	r2, r0
+ 80002f6:	4b05      	ldr	r3, [pc, #20]	; (800030c <Get_PCLK1_freq+0x20>)
+ 80002f8:	689b      	ldr	r3, [r3, #8]
+ 80002fa:	0a9b      	lsrs	r3, r3, #10
+ 80002fc:	f003 0307 	and.w	r3, r3, #7
+ 8000300:	4903      	ldr	r1, [pc, #12]	; (8000310 <Get_PCLK1_freq+0x24>)
+ 8000302:	5ccb      	ldrb	r3, [r1, r3]
+ 8000304:	fa22 f303 	lsr.w	r3, r2, r3
 }
- 8000284:	4618      	mov	r0, r3
- 8000286:	bd80      	pop	{r7, pc}
- 8000288:	40023800 	.word	0x40023800
- 800028c:	080006d0 	.word	0x080006d0
+ 8000308:	4618      	mov	r0, r3
+ 800030a:	bd80      	pop	{r7, pc}
+ 800030c:	40023800 	.word	0x40023800
+ 8000310:	080006d0 	.word	0x080006d0
 
-08000290 <Get_PCLK2_freq>:
+08000314 <Get_PCLK2_freq>:
 
-/*
- * Returns the PCLK2 frequency
- */
+
 uint32_t Get_PCLK2_freq(void)
 {
- 8000290:	b580      	push	{r7, lr}
- 8000292:	af00      	add	r7, sp, #0
+ 8000314:	b580      	push	{r7, lr}
+ 8000316:	af00      	add	r7, sp, #0
   /* Get HCLK source and Compute PCLK2 frequency ---------------------------*/
   return (Get_HCLK_freq()>> APBPrescTable[(RCC->CFGR & RCC_CFGR_PPRE2)>> RCC_CFGR_PPRE2_Pos]);
- 8000294:	f7ff ffdc 	bl	8000250 <Get_HCLK_freq>
- 8000298:	4602      	mov	r2, r0
- 800029a:	4b05      	ldr	r3, [pc, #20]	; (80002b0 <Get_PCLK2_freq+0x20>)
- 800029c:	689b      	ldr	r3, [r3, #8]
- 800029e:	0b5b      	lsrs	r3, r3, #13
- 80002a0:	f003 0307 	and.w	r3, r3, #7
- 80002a4:	4903      	ldr	r1, [pc, #12]	; (80002b4 <Get_PCLK2_freq+0x24>)
- 80002a6:	5ccb      	ldrb	r3, [r1, r3]
- 80002a8:	fa22 f303 	lsr.w	r3, r2, r3
+ 8000318:	f7ff ffdc 	bl	80002d4 <Get_HCLK_freq>
+ 800031c:	4602      	mov	r2, r0
+ 800031e:	4b05      	ldr	r3, [pc, #20]	; (8000334 <Get_PCLK2_freq+0x20>)
+ 8000320:	689b      	ldr	r3, [r3, #8]
+ 8000322:	0b5b      	lsrs	r3, r3, #13
+ 8000324:	f003 0307 	and.w	r3, r3, #7
+ 8000328:	4903      	ldr	r1, [pc, #12]	; (8000338 <Get_PCLK2_freq+0x24>)
+ 800032a:	5ccb      	ldrb	r3, [r1, r3]
+ 800032c:	fa22 f303 	lsr.w	r3, r2, r3
 }
- 80002ac:	4618      	mov	r0, r3
- 80002ae:	bd80      	pop	{r7, pc}
- 80002b0:	40023800 	.word	0x40023800
- 80002b4:	080006d0 	.word	0x080006d0
-
-080002b8 <LED_init>:
-
-/*
- * Init LED
- * */
-void LED_init(user_led LD)
-{
- 80002b8:	b480      	push	{r7}
- 80002ba:	b083      	sub	sp, #12
- 80002bc:	af00      	add	r7, sp, #0
- 80002be:	4603      	mov	r3, r0
- 80002c0:	71fb      	strb	r3, [r7, #7]
-	RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;	// IO port D clock enable
- 80002c2:	4b1c      	ldr	r3, [pc, #112]	; (8000334 <LED_init+0x7c>)
- 80002c4:	6b1b      	ldr	r3, [r3, #48]	; 0x30
- 80002c6:	4a1b      	ldr	r2, [pc, #108]	; (8000334 <LED_init+0x7c>)
- 80002c8:	f043 0308 	orr.w	r3, r3, #8
- 80002cc:	6313      	str	r3, [r2, #48]	; 0x30
-
-	// set general purpose output mode
-	switch (LD)
- 80002ce:	79fb      	ldrb	r3, [r7, #7]
- 80002d0:	3b0c      	subs	r3, #12
- 80002d2:	2b03      	cmp	r3, #3
- 80002d4:	d826      	bhi.n	8000324 <LED_init+0x6c>
- 80002d6:	a201      	add	r2, pc, #4	; (adr r2, 80002dc <LED_init+0x24>)
- 80002d8:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
- 80002dc:	080002fb 	.word	0x080002fb
- 80002e0:	080002ed 	.word	0x080002ed
- 80002e4:	08000309 	.word	0x08000309
- 80002e8:	08000317 	.word	0x08000317
-	{
-		case LD3:
-			GPIOD->MODER |= GPIO_MODER_MODER13_0;
- 80002ec:	4b12      	ldr	r3, [pc, #72]	; (8000338 <LED_init+0x80>)
- 80002ee:	681b      	ldr	r3, [r3, #0]
- 80002f0:	4a11      	ldr	r2, [pc, #68]	; (8000338 <LED_init+0x80>)
- 80002f2:	f043 6380 	orr.w	r3, r3, #67108864	; 0x4000000
- 80002f6:	6013      	str	r3, [r2, #0]
-	 		break;
- 80002f8:	e015      	b.n	8000326 <LED_init+0x6e>
-		case LD4:
-			GPIOD->MODER |= GPIO_MODER_MODER12_0;
- 80002fa:	4b0f      	ldr	r3, [pc, #60]	; (8000338 <LED_init+0x80>)
- 80002fc:	681b      	ldr	r3, [r3, #0]
- 80002fe:	4a0e      	ldr	r2, [pc, #56]	; (8000338 <LED_init+0x80>)
- 8000300:	f043 7380 	orr.w	r3, r3, #16777216	; 0x1000000
- 8000304:	6013      	str	r3, [r2, #0]
-			break;
- 8000306:	e00e      	b.n	8000326 <LED_init+0x6e>
-		case LD5:
-			GPIOD->MODER |= GPIO_MODER_MODER14_0;
- 8000308:	4b0b      	ldr	r3, [pc, #44]	; (8000338 <LED_init+0x80>)
- 800030a:	681b      	ldr	r3, [r3, #0]
- 800030c:	4a0a      	ldr	r2, [pc, #40]	; (8000338 <LED_init+0x80>)
- 800030e:	f043 5380 	orr.w	r3, r3, #268435456	; 0x10000000
- 8000312:	6013      	str	r3, [r2, #0]
-			break;
- 8000314:	e007      	b.n	8000326 <LED_init+0x6e>
-		case LD6:
-			GPIOD->MODER |= GPIO_MODER_MODER15_0;
- 8000316:	4b08      	ldr	r3, [pc, #32]	; (8000338 <LED_init+0x80>)
- 8000318:	681b      	ldr	r3, [r3, #0]
- 800031a:	4a07      	ldr	r2, [pc, #28]	; (8000338 <LED_init+0x80>)
- 800031c:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
- 8000320:	6013      	str	r3, [r2, #0]
-			break;
- 8000322:	e000      	b.n	8000326 <LED_init+0x6e>
-		default:
-			break;
- 8000324:	bf00      	nop
-	}
-}
- 8000326:	bf00      	nop
- 8000328:	370c      	adds	r7, #12
- 800032a:	46bd      	mov	sp, r7
- 800032c:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8000330:	4770      	bx	lr
- 8000332:	bf00      	nop
+ 8000330:	4618      	mov	r0, r3
+ 8000332:	bd80      	pop	{r7, pc}
  8000334:	40023800 	.word	0x40023800
- 8000338:	40020c00 	.word	0x40020c00
+ 8000338:	080006d0 	.word	0x080006d0
 
 0800033c <Timer_init>:
+#include "Timer.h"
 
-/*
- * Initialize Timer
- * */
-void Timer_init(TIM_TypeDef *TIM)
+
+// APIs
+void Timer_init(TIM_TypeDef *pTIM)
 {
  800033c:	b580      	push	{r7, lr}
  800033e:	b086      	sub	sp, #24
@@ -309,7 +303,7 @@ void Timer_init(TIM_TypeDef *TIM)
 	uint32_t F_timer, prescaler, f_CLK;
 
 	// get frequency of CLK
-	if (TIM == TIM1 || TIM == TIM8 || TIM == TIM9 || TIM == TIM10 || TIM == TIM11)
+	if (pTIM == TIM1 || pTIM == TIM8 || pTIM == TIM9 || pTIM == TIM10 || pTIM == TIM11)
  8000344:	687b      	ldr	r3, [r7, #4]
  8000346:	4a7d      	ldr	r2, [pc, #500]	; (800053c <Timer_init+0x200>)
  8000348:	4293      	cmp	r3, r2
@@ -331,10 +325,10 @@ void Timer_init(TIM_TypeDef *TIM)
  8000368:	4293      	cmp	r3, r2
  800036a:	d103      	bne.n	8000374 <Timer_init+0x38>
 		f_CLK = Get_PCLK2_freq();
- 800036c:	f7ff ff90 	bl	8000290 <Get_PCLK2_freq>
+ 800036c:	f7ff ffd2 	bl	8000314 <Get_PCLK2_freq>
  8000370:	6178      	str	r0, [r7, #20]
  8000372:	e026      	b.n	80003c2 <Timer_init+0x86>
-	else if (TIM == TIM2 || TIM == TIM3 || TIM == TIM4 || TIM == TIM5 || TIM == TIM6 || TIM == TIM7 || TIM == TIM12 || TIM == TIM13 || TIM == TIM14)
+	else if (pTIM == TIM2 || pTIM == TIM3 || pTIM == TIM4 || pTIM == TIM5 || pTIM == TIM6 || pTIM == TIM7 || pTIM == TIM12 || pTIM == TIM13 || pTIM == TIM14)
  8000374:	687b      	ldr	r3, [r7, #4]
  8000376:	f1b3 4f80 	cmp.w	r3, #1073741824	; 0x40000000
  800037a:	d01f      	beq.n	80003bc <Timer_init+0x80>
@@ -371,11 +365,11 @@ void Timer_init(TIM_TypeDef *TIM)
  80003b8:	4293      	cmp	r3, r2
  80003ba:	d102      	bne.n	80003c2 <Timer_init+0x86>
 		f_CLK = Get_PCLK1_freq();
- 80003bc:	f7ff ff54 	bl	8000268 <Get_PCLK1_freq>
+ 80003bc:	f7ff ff96 	bl	80002ec <Get_PCLK1_freq>
  80003c0:	6178      	str	r0, [r7, #20]
 
-	// TIM clock enable
-	if (TIM == TIM1)
+	// pTIM clock enable
+	if (pTIM == TIM1)
  80003c2:	687b      	ldr	r3, [r7, #4]
  80003c4:	4a5d      	ldr	r2, [pc, #372]	; (800053c <Timer_init+0x200>)
  80003c6:	4293      	cmp	r3, r2
@@ -387,7 +381,7 @@ void Timer_init(TIM_TypeDef *TIM)
  80003d0:	f043 0301 	orr.w	r3, r3, #1
  80003d4:	6453      	str	r3, [r2, #68]	; 0x44
  80003d6:	e08d      	b.n	80004f4 <Timer_init+0x1b8>
-	else if (TIM == TIM8)
+	else if (pTIM == TIM8)
  80003d8:	687b      	ldr	r3, [r7, #4]
  80003da:	4a59      	ldr	r2, [pc, #356]	; (8000540 <Timer_init+0x204>)
  80003dc:	4293      	cmp	r3, r2
@@ -399,7 +393,7 @@ void Timer_init(TIM_TypeDef *TIM)
  80003e6:	f043 0302 	orr.w	r3, r3, #2
  80003ea:	6453      	str	r3, [r2, #68]	; 0x44
  80003ec:	e082      	b.n	80004f4 <Timer_init+0x1b8>
-	else if (TIM == TIM9)
+	else if (pTIM == TIM9)
  80003ee:	687b      	ldr	r3, [r7, #4]
  80003f0:	4a54      	ldr	r2, [pc, #336]	; (8000544 <Timer_init+0x208>)
  80003f2:	4293      	cmp	r3, r2
@@ -411,7 +405,7 @@ void Timer_init(TIM_TypeDef *TIM)
  80003fc:	f443 3380 	orr.w	r3, r3, #65536	; 0x10000
  8000400:	6453      	str	r3, [r2, #68]	; 0x44
  8000402:	e077      	b.n	80004f4 <Timer_init+0x1b8>
-	else if (TIM == TIM10)
+	else if (pTIM == TIM10)
  8000404:	687b      	ldr	r3, [r7, #4]
  8000406:	4a50      	ldr	r2, [pc, #320]	; (8000548 <Timer_init+0x20c>)
  8000408:	4293      	cmp	r3, r2
@@ -423,7 +417,7 @@ void Timer_init(TIM_TypeDef *TIM)
  8000412:	f443 3300 	orr.w	r3, r3, #131072	; 0x20000
  8000416:	6453      	str	r3, [r2, #68]	; 0x44
  8000418:	e06c      	b.n	80004f4 <Timer_init+0x1b8>
-	else if (TIM == TIM11)
+	else if (pTIM == TIM11)
  800041a:	687b      	ldr	r3, [r7, #4]
  800041c:	4a4b      	ldr	r2, [pc, #300]	; (800054c <Timer_init+0x210>)
  800041e:	4293      	cmp	r3, r2
@@ -435,7 +429,7 @@ void Timer_init(TIM_TypeDef *TIM)
  8000428:	f443 2380 	orr.w	r3, r3, #262144	; 0x40000
  800042c:	6453      	str	r3, [r2, #68]	; 0x44
  800042e:	e061      	b.n	80004f4 <Timer_init+0x1b8>
-	else if (TIM == TIM2)
+	else if (pTIM == TIM2)
  8000430:	687b      	ldr	r3, [r7, #4]
  8000432:	f1b3 4f80 	cmp.w	r3, #1073741824	; 0x40000000
  8000436:	d106      	bne.n	8000446 <Timer_init+0x10a>
@@ -446,7 +440,7 @@ void Timer_init(TIM_TypeDef *TIM)
  800043e:	f043 0301 	orr.w	r3, r3, #1
  8000442:	6413      	str	r3, [r2, #64]	; 0x40
  8000444:	e056      	b.n	80004f4 <Timer_init+0x1b8>
-	else if (TIM == TIM3)
+	else if (pTIM == TIM3)
  8000446:	687b      	ldr	r3, [r7, #4]
  8000448:	4a41      	ldr	r2, [pc, #260]	; (8000550 <Timer_init+0x214>)
  800044a:	4293      	cmp	r3, r2
@@ -458,7 +452,7 @@ void Timer_init(TIM_TypeDef *TIM)
  8000454:	f043 0302 	orr.w	r3, r3, #2
  8000458:	6413      	str	r3, [r2, #64]	; 0x40
  800045a:	e04b      	b.n	80004f4 <Timer_init+0x1b8>
-	else if (TIM == TIM4)
+	else if (pTIM == TIM4)
  800045c:	687b      	ldr	r3, [r7, #4]
  800045e:	4a3d      	ldr	r2, [pc, #244]	; (8000554 <Timer_init+0x218>)
  8000460:	4293      	cmp	r3, r2
@@ -470,7 +464,7 @@ void Timer_init(TIM_TypeDef *TIM)
  800046a:	f043 0304 	orr.w	r3, r3, #4
  800046e:	6413      	str	r3, [r2, #64]	; 0x40
  8000470:	e040      	b.n	80004f4 <Timer_init+0x1b8>
-	else if (TIM == TIM5)
+	else if (pTIM == TIM5)
  8000472:	687b      	ldr	r3, [r7, #4]
  8000474:	4a38      	ldr	r2, [pc, #224]	; (8000558 <Timer_init+0x21c>)
  8000476:	4293      	cmp	r3, r2
@@ -482,7 +476,7 @@ void Timer_init(TIM_TypeDef *TIM)
  8000480:	f043 0308 	orr.w	r3, r3, #8
  8000484:	6413      	str	r3, [r2, #64]	; 0x40
  8000486:	e035      	b.n	80004f4 <Timer_init+0x1b8>
-	else if (TIM == TIM6)
+	else if (pTIM == TIM6)
  8000488:	687b      	ldr	r3, [r7, #4]
  800048a:	4a34      	ldr	r2, [pc, #208]	; (800055c <Timer_init+0x220>)
  800048c:	4293      	cmp	r3, r2
@@ -494,7 +488,7 @@ void Timer_init(TIM_TypeDef *TIM)
  8000496:	f043 0310 	orr.w	r3, r3, #16
  800049a:	6413      	str	r3, [r2, #64]	; 0x40
  800049c:	e02a      	b.n	80004f4 <Timer_init+0x1b8>
-	else if (TIM == TIM7)
+	else if (pTIM == TIM7)
  800049e:	687b      	ldr	r3, [r7, #4]
  80004a0:	4a2f      	ldr	r2, [pc, #188]	; (8000560 <Timer_init+0x224>)
  80004a2:	4293      	cmp	r3, r2
@@ -506,7 +500,7 @@ void Timer_init(TIM_TypeDef *TIM)
  80004ac:	f043 0320 	orr.w	r3, r3, #32
  80004b0:	6413      	str	r3, [r2, #64]	; 0x40
  80004b2:	e01f      	b.n	80004f4 <Timer_init+0x1b8>
-	else if (TIM == TIM12)
+	else if (pTIM == TIM12)
  80004b4:	687b      	ldr	r3, [r7, #4]
  80004b6:	4a2b      	ldr	r2, [pc, #172]	; (8000564 <Timer_init+0x228>)
  80004b8:	4293      	cmp	r3, r2
@@ -518,7 +512,7 @@ void Timer_init(TIM_TypeDef *TIM)
  80004c2:	f043 0340 	orr.w	r3, r3, #64	; 0x40
  80004c6:	6413      	str	r3, [r2, #64]	; 0x40
  80004c8:	e014      	b.n	80004f4 <Timer_init+0x1b8>
-	else if (TIM == TIM13)
+	else if (pTIM == TIM13)
  80004ca:	687b      	ldr	r3, [r7, #4]
  80004cc:	4a26      	ldr	r2, [pc, #152]	; (8000568 <Timer_init+0x22c>)
  80004ce:	4293      	cmp	r3, r2
@@ -530,7 +524,7 @@ void Timer_init(TIM_TypeDef *TIM)
  80004d8:	f043 0380 	orr.w	r3, r3, #128	; 0x80
  80004dc:	6413      	str	r3, [r2, #64]	; 0x40
  80004de:	e009      	b.n	80004f4 <Timer_init+0x1b8>
-	else if (TIM == TIM14)
+	else if (pTIM == TIM14)
  80004e0:	687b      	ldr	r3, [r7, #4]
  80004e2:	4a22      	ldr	r2, [pc, #136]	; (800056c <Timer_init+0x230>)
  80004e4:	4293      	cmp	r3, r2
@@ -553,25 +547,25 @@ void Timer_init(TIM_TypeDef *TIM)
  8000502:	3b01      	subs	r3, #1
  8000504:	60fb      	str	r3, [r7, #12]
 
-	TIM->PSC |= prescaler;
+	pTIM->PSC |= prescaler;
  8000506:	687b      	ldr	r3, [r7, #4]
  8000508:	6a9a      	ldr	r2, [r3, #40]	; 0x28
  800050a:	68fb      	ldr	r3, [r7, #12]
  800050c:	431a      	orrs	r2, r3
  800050e:	687b      	ldr	r3, [r7, #4]
  8000510:	629a      	str	r2, [r3, #40]	; 0x28
-	TIM->ARR = AutoReload;
+	pTIM->ARR = AutoReload;
  8000512:	687b      	ldr	r3, [r7, #4]
  8000514:	f64f 72ff 	movw	r2, #65535	; 0xffff
  8000518:	62da      	str	r2, [r3, #44]	; 0x2c
 
-	TIM->CR1 |= TIM_CR1_CEN;		// Counter enable
+	pTIM->CR1 |= TIM_CR1_CEN;		// Counter enable
  800051a:	687b      	ldr	r3, [r7, #4]
  800051c:	681b      	ldr	r3, [r3, #0]
  800051e:	f043 0201 	orr.w	r2, r3, #1
  8000522:	687b      	ldr	r3, [r7, #4]
  8000524:	601a      	str	r2, [r3, #0]
-	TIM->CR1 &= ~(TIM_CR1_DIR);		// Counter used as up counter
+	pTIM->CR1 &= ~(TIM_CR1_DIR);		// Counter used as up counter
  8000526:	687b      	ldr	r3, [r7, #4]
  8000528:	681b      	ldr	r3, [r3, #0]
  800052a:	f023 0210 	bic.w	r2, r3, #16
@@ -600,21 +594,19 @@ void Timer_init(TIM_TypeDef *TIM)
 
 08000574 <Timer_delay_ms>:
 
-/*
- * delay by ms
- * */
-void Timer_delay_ms(TIM_TypeDef *TIM, int ms)
+
+void Timer_delay_ms(TIM_TypeDef *pTIM, int ms)
 {
  8000574:	b480      	push	{r7}
  8000576:	b083      	sub	sp, #12
  8000578:	af00      	add	r7, sp, #0
  800057a:	6078      	str	r0, [r7, #4]
  800057c:	6039      	str	r1, [r7, #0]
-	TIM->CNT = 0;
+	pTIM->CNT = 0;
  800057e:	687b      	ldr	r3, [r7, #4]
  8000580:	2200      	movs	r2, #0
  8000582:	625a      	str	r2, [r3, #36]	; 0x24
-	while (TIM->CNT < ms);
+	while (pTIM->CNT < ms);
  8000584:	bf00      	nop
  8000586:	687b      	ldr	r3, [r7, #4]
  8000588:	6a5a      	ldr	r2, [r3, #36]	; 0x24
@@ -640,12 +632,12 @@ int main()
  80005a0:	b580      	push	{r7, lr}
  80005a2:	af00      	add	r7, sp, #0
 	SystemClock_config();
- 80005a4:	f7ff fe20 	bl	80001e8 <SystemClock_config>
+ 80005a4:	f7ff fe62 	bl	800026c <SystemClock_config>
 	LED_init(led);
  80005a8:	4b19      	ldr	r3, [pc, #100]	; (8000610 <main+0x70>)
  80005aa:	781b      	ldrb	r3, [r3, #0]
  80005ac:	4618      	mov	r0, r3
- 80005ae:	f7ff fe83 	bl	80002b8 <LED_init>
+ 80005ae:	f7ff fe1b 	bl	80001e8 <LED_init>
 	Timer_init(TIM);
  80005b2:	4b18      	ldr	r3, [pc, #96]	; (8000614 <main+0x74>)
  80005b4:	681b      	ldr	r3, [r3, #0]

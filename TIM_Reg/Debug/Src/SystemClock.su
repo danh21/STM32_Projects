@@ -1,0 +1,4 @@
+../Src/SystemClock.c:32:6:SystemClock_config	4	static
+../Src/SystemClock.c:49:10:Get_HCLK_freq	4	static
+../Src/SystemClock.c:55:10:Get_PCLK1_freq	8	static
+../Src/SystemClock.c:62:10:Get_PCLK2_freq	8	static

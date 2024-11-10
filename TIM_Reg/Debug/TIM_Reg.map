@@ -25,6 +25,87 @@ Discarded input sections
  .ARM.exidx     0x0000000000000000       0x10 d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
  .ARM.attributes
                 0x0000000000000000       0x1c d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
+ .group         0x0000000000000000        0xc ./Src/Led.o
+ .group         0x0000000000000000        0xc ./Src/Led.o
+ .group         0x0000000000000000        0xc ./Src/Led.o
+ .group         0x0000000000000000        0xc ./Src/Led.o
+ .group         0x0000000000000000        0xc ./Src/Led.o
+ .group         0x0000000000000000        0xc ./Src/Led.o
+ .group         0x0000000000000000        0xc ./Src/Led.o
+ .group         0x0000000000000000        0xc ./Src/Led.o
+ .group         0x0000000000000000        0xc ./Src/Led.o
+ .group         0x0000000000000000        0xc ./Src/Led.o
+ .group         0x0000000000000000        0xc ./Src/Led.o
+ .group         0x0000000000000000        0xc ./Src/Led.o
+ .group         0x0000000000000000        0xc ./Src/Led.o
+ .group         0x0000000000000000        0xc ./Src/Led.o
+ .group         0x0000000000000000        0xc ./Src/Led.o
+ .text          0x0000000000000000        0x0 ./Src/Led.o
+ .data          0x0000000000000000        0x0 ./Src/Led.o
+ .bss           0x0000000000000000        0x0 ./Src/Led.o
+ .group         0x0000000000000000        0xc ./Src/SystemClock.o
+ .group         0x0000000000000000        0xc ./Src/SystemClock.o
+ .group         0x0000000000000000        0xc ./Src/SystemClock.o
+ .group         0x0000000000000000        0xc ./Src/SystemClock.o
+ .group         0x0000000000000000        0xc ./Src/SystemClock.o
+ .group         0x0000000000000000        0xc ./Src/SystemClock.o
+ .group         0x0000000000000000        0xc ./Src/SystemClock.o
+ .group         0x0000000000000000        0xc ./Src/SystemClock.o
+ .group         0x0000000000000000        0xc ./Src/SystemClock.o
+ .group         0x0000000000000000        0xc ./Src/SystemClock.o
+ .group         0x0000000000000000        0xc ./Src/SystemClock.o
+ .group         0x0000000000000000        0xc ./Src/SystemClock.o
+ .group         0x0000000000000000        0xc ./Src/SystemClock.o
+ .group         0x0000000000000000        0xc ./Src/SystemClock.o
+ .text          0x0000000000000000        0x0 ./Src/SystemClock.o
+ .data          0x0000000000000000        0x0 ./Src/SystemClock.o
+ .bss           0x0000000000000000        0x0 ./Src/SystemClock.o
+ .debug_macro   0x0000000000000000      0xa7e ./Src/SystemClock.o
+ .debug_macro   0x0000000000000000       0x2f ./Src/SystemClock.o
+ .debug_macro   0x0000000000000000       0x22 ./Src/SystemClock.o
+ .debug_macro   0x0000000000000000       0x8e ./Src/SystemClock.o
+ .debug_macro   0x0000000000000000       0x51 ./Src/SystemClock.o
+ .debug_macro   0x0000000000000000      0x103 ./Src/SystemClock.o
+ .debug_macro   0x0000000000000000       0x6a ./Src/SystemClock.o
+ .debug_macro   0x0000000000000000      0x1df ./Src/SystemClock.o
+ .debug_macro   0x0000000000000000       0x1c ./Src/SystemClock.o
+ .debug_macro   0x0000000000000000       0x22 ./Src/SystemClock.o
+ .debug_macro   0x0000000000000000       0xd9 ./Src/SystemClock.o
+ .debug_macro   0x0000000000000000     0x102d ./Src/SystemClock.o
+ .debug_macro   0x0000000000000000      0x11f ./Src/SystemClock.o
+ .debug_macro   0x0000000000000000    0x15e82 ./Src/SystemClock.o
+ .group         0x0000000000000000        0xc ./Src/Timer.o
+ .group         0x0000000000000000        0xc ./Src/Timer.o
+ .group         0x0000000000000000        0xc ./Src/Timer.o
+ .group         0x0000000000000000        0xc ./Src/Timer.o
+ .group         0x0000000000000000        0xc ./Src/Timer.o
+ .group         0x0000000000000000        0xc ./Src/Timer.o
+ .group         0x0000000000000000        0xc ./Src/Timer.o
+ .group         0x0000000000000000        0xc ./Src/Timer.o
+ .group         0x0000000000000000        0xc ./Src/Timer.o
+ .group         0x0000000000000000        0xc ./Src/Timer.o
+ .group         0x0000000000000000        0xc ./Src/Timer.o
+ .group         0x0000000000000000        0xc ./Src/Timer.o
+ .group         0x0000000000000000        0xc ./Src/Timer.o
+ .group         0x0000000000000000        0xc ./Src/Timer.o
+ .group         0x0000000000000000        0xc ./Src/Timer.o
+ .text          0x0000000000000000        0x0 ./Src/Timer.o
+ .data          0x0000000000000000        0x0 ./Src/Timer.o
+ .bss           0x0000000000000000        0x0 ./Src/Timer.o
+ .debug_macro   0x0000000000000000      0xa7e ./Src/Timer.o
+ .debug_macro   0x0000000000000000       0x2f ./Src/Timer.o
+ .debug_macro   0x0000000000000000       0x22 ./Src/Timer.o
+ .debug_macro   0x0000000000000000       0x8e ./Src/Timer.o
+ .debug_macro   0x0000000000000000       0x51 ./Src/Timer.o
+ .debug_macro   0x0000000000000000      0x103 ./Src/Timer.o
+ .debug_macro   0x0000000000000000       0x6a ./Src/Timer.o
+ .debug_macro   0x0000000000000000      0x1df ./Src/Timer.o
+ .debug_macro   0x0000000000000000       0x1c ./Src/Timer.o
+ .debug_macro   0x0000000000000000       0x22 ./Src/Timer.o
+ .debug_macro   0x0000000000000000       0xd9 ./Src/Timer.o
+ .debug_macro   0x0000000000000000     0x102d ./Src/Timer.o
+ .debug_macro   0x0000000000000000      0x11f ./Src/Timer.o
+ .debug_macro   0x0000000000000000    0x15e82 ./Src/Timer.o
  .group         0x0000000000000000        0xc ./Src/main.o
  .group         0x0000000000000000        0xc ./Src/main.o
  .group         0x0000000000000000        0xc ./Src/main.o
@@ -44,6 +125,21 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./Src/main.o
  .data          0x0000000000000000        0x0 ./Src/main.o
  .bss           0x0000000000000000        0x0 ./Src/main.o
+ .debug_macro   0x0000000000000000      0xa7e ./Src/main.o
+ .debug_macro   0x0000000000000000       0x22 ./Src/main.o
+ .debug_macro   0x0000000000000000       0x8e ./Src/main.o
+ .debug_macro   0x0000000000000000       0x51 ./Src/main.o
+ .debug_macro   0x0000000000000000      0x103 ./Src/main.o
+ .debug_macro   0x0000000000000000       0x6a ./Src/main.o
+ .debug_macro   0x0000000000000000      0x1df ./Src/main.o
+ .debug_macro   0x0000000000000000       0x2f ./Src/main.o
+ .debug_macro   0x0000000000000000       0x1c ./Src/main.o
+ .debug_macro   0x0000000000000000       0x22 ./Src/main.o
+ .debug_macro   0x0000000000000000       0xd9 ./Src/main.o
+ .debug_macro   0x0000000000000000     0x102d ./Src/main.o
+ .debug_macro   0x0000000000000000      0x11f ./Src/main.o
+ .debug_macro   0x0000000000000000    0x15e82 ./Src/main.o
+ .debug_macro   0x0000000000000000       0x10 ./Src/main.o
  .group         0x0000000000000000        0xc ./Src/syscalls.o
  .group         0x0000000000000000        0xc ./Src/syscalls.o
  .group         0x0000000000000000        0xc ./Src/syscalls.o
@@ -298,6 +394,9 @@ Linker script and memory map
 LOAD d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m+fp/hard/crti.o
 LOAD d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m+fp/hard/crtbegin.o
 LOAD d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
+LOAD ./Src/Led.o
+LOAD ./Src/SystemClock.o
+LOAD ./Src/Timer.o
 LOAD ./Src/main.o
 LOAD ./Src/syscalls.o
 LOAD ./Src/sysmem.o
@@ -338,26 +437,26 @@ LOAD d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube
  *(.text)
  .text          0x00000000080001a8       0x40 d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m+fp/hard/crtbegin.o
  *(.text*)
- .text.SystemClock_config
-                0x00000000080001e8       0x68 ./Src/main.o
-                0x00000000080001e8                SystemClock_config
- .text.Get_HCLK_freq
-                0x0000000008000250       0x18 ./Src/main.o
-                0x0000000008000250                Get_HCLK_freq
- .text.Get_PCLK1_freq
-                0x0000000008000268       0x28 ./Src/main.o
-                0x0000000008000268                Get_PCLK1_freq
- .text.Get_PCLK2_freq
-                0x0000000008000290       0x28 ./Src/main.o
-                0x0000000008000290                Get_PCLK2_freq
  .text.LED_init
-                0x00000000080002b8       0x84 ./Src/main.o
-                0x00000000080002b8                LED_init
+                0x00000000080001e8       0x84 ./Src/Led.o
+                0x00000000080001e8                LED_init
+ .text.SystemClock_config
+                0x000000000800026c       0x68 ./Src/SystemClock.o
+                0x000000000800026c                SystemClock_config
+ .text.Get_HCLK_freq
+                0x00000000080002d4       0x18 ./Src/SystemClock.o
+                0x00000000080002d4                Get_HCLK_freq
+ .text.Get_PCLK1_freq
+                0x00000000080002ec       0x28 ./Src/SystemClock.o
+                0x00000000080002ec                Get_PCLK1_freq
+ .text.Get_PCLK2_freq
+                0x0000000008000314       0x28 ./Src/SystemClock.o
+                0x0000000008000314                Get_PCLK2_freq
  .text.Timer_init
-                0x000000000800033c      0x238 ./Src/main.o
+                0x000000000800033c      0x238 ./Src/Timer.o
                 0x000000000800033c                Timer_init
  .text.Timer_delay_ms
-                0x0000000008000574       0x2a ./Src/main.o
+                0x0000000008000574       0x2a ./Src/Timer.o
                 0x0000000008000574                Timer_delay_ms
  *fill*         0x000000000800059e        0x2 
  .text.main     0x00000000080005a0       0x7c ./Src/main.o
@@ -495,7 +594,7 @@ LOAD d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube
  *(.rodata)
  *(.rodata*)
  .rodata.APBPrescTable
-                0x00000000080006d0        0x8 ./Src/main.o
+                0x00000000080006d0        0x8 ./Src/SystemClock.o
                 0x00000000080006d0                APBPrescTable
                 0x00000000080006d8                . = ALIGN (0x4)
 
@@ -546,7 +645,7 @@ LOAD d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube
  *(.data)
  *(.data*)
  .data.SystemCoreClock
-                0x0000000020000000        0x4 ./Src/main.o
+                0x0000000020000000        0x4 ./Src/SystemClock.o
                 0x0000000020000000                SystemCoreClock
  .data.led      0x0000000020000004        0x1 ./Src/main.o
                 0x0000000020000004                led
@@ -606,70 +705,110 @@ LOAD d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube
  .ARM.attributes
                 0x000000000000001e       0x34 d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m+fp/hard/crtbegin.o
  .ARM.attributes
-                0x0000000000000052       0x34 ./Src/main.o
+                0x0000000000000052       0x34 ./Src/Led.o
  .ARM.attributes
-                0x0000000000000086       0x21 ./Startup/startup_stm32f407vetx.o
+                0x0000000000000086       0x34 ./Src/SystemClock.o
  .ARM.attributes
-                0x00000000000000a7       0x34 d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-init.o)
+                0x00000000000000ba       0x34 ./Src/Timer.o
  .ARM.attributes
-                0x00000000000000db       0x1e d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m+fp/hard/crtn.o
+                0x00000000000000ee       0x34 ./Src/main.o
+ .ARM.attributes
+                0x0000000000000122       0x21 ./Startup/startup_stm32f407vetx.o
+ .ARM.attributes
+                0x0000000000000143       0x34 d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-init.o)
+ .ARM.attributes
+                0x0000000000000177       0x1e d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m+fp/hard/crtn.o
 OUTPUT(TIM_Reg.elf elf32-littlearm)
 LOAD linker stubs
 LOAD d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a
 LOAD d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a
 LOAD d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m+fp/hard\libgcc.a
 
-.debug_info     0x0000000000000000      0x6e5
- .debug_info    0x0000000000000000      0x6c3 ./Src/main.o
- .debug_info    0x00000000000006c3       0x22 ./Startup/startup_stm32f407vetx.o
+.debug_info     0x0000000000000000      0xe95
+ .debug_info    0x0000000000000000      0x357 ./Src/Led.o
+ .debug_info    0x0000000000000357      0x3bd ./Src/SystemClock.o
+ .debug_info    0x0000000000000714      0x435 ./Src/Timer.o
+ .debug_info    0x0000000000000b49      0x32a ./Src/main.o
+ .debug_info    0x0000000000000e73       0x22 ./Startup/startup_stm32f407vetx.o
 
-.debug_abbrev   0x0000000000000000      0x1cc
- .debug_abbrev  0x0000000000000000      0x1ba ./Src/main.o
- .debug_abbrev  0x00000000000001ba       0x12 ./Startup/startup_stm32f407vetx.o
+.debug_abbrev   0x0000000000000000      0x430
+ .debug_abbrev  0x0000000000000000       0xdc ./Src/Led.o
+ .debug_abbrev  0x00000000000000dc      0x110 ./Src/SystemClock.o
+ .debug_abbrev  0x00000000000001ec      0x11c ./Src/Timer.o
+ .debug_abbrev  0x0000000000000308      0x116 ./Src/main.o
+ .debug_abbrev  0x000000000000041e       0x12 ./Startup/startup_stm32f407vetx.o
 
-.debug_aranges  0x0000000000000000       0x80
+.debug_aranges  0x0000000000000000       0xc8
  .debug_aranges
-                0x0000000000000000       0x58 ./Src/main.o
+                0x0000000000000000       0x20 ./Src/Led.o
  .debug_aranges
-                0x0000000000000058       0x28 ./Startup/startup_stm32f407vetx.o
+                0x0000000000000020       0x38 ./Src/SystemClock.o
+ .debug_aranges
+                0x0000000000000058       0x28 ./Src/Timer.o
+ .debug_aranges
+                0x0000000000000080       0x20 ./Src/main.o
+ .debug_aranges
+                0x00000000000000a0       0x28 ./Startup/startup_stm32f407vetx.o
 
-.debug_ranges   0x0000000000000000       0x68
- .debug_ranges  0x0000000000000000       0x48 ./Src/main.o
- .debug_ranges  0x0000000000000048       0x20 ./Startup/startup_stm32f407vetx.o
+.debug_ranges   0x0000000000000000       0x80
+ .debug_ranges  0x0000000000000000       0x10 ./Src/Led.o
+ .debug_ranges  0x0000000000000010       0x28 ./Src/SystemClock.o
+ .debug_ranges  0x0000000000000038       0x18 ./Src/Timer.o
+ .debug_ranges  0x0000000000000050       0x10 ./Src/main.o
+ .debug_ranges  0x0000000000000060       0x20 ./Startup/startup_stm32f407vetx.o
 
-.debug_macro    0x0000000000000000    0x18108
- .debug_macro   0x0000000000000000       0xdf ./Src/main.o
- .debug_macro   0x00000000000000df      0xa7e ./Src/main.o
- .debug_macro   0x0000000000000b5d       0x22 ./Src/main.o
- .debug_macro   0x0000000000000b7f       0x8e ./Src/main.o
- .debug_macro   0x0000000000000c0d       0x51 ./Src/main.o
- .debug_macro   0x0000000000000c5e      0x103 ./Src/main.o
- .debug_macro   0x0000000000000d61       0x6a ./Src/main.o
- .debug_macro   0x0000000000000dcb      0x1df ./Src/main.o
- .debug_macro   0x0000000000000faa       0x2f ./Src/main.o
- .debug_macro   0x0000000000000fd9       0x1c ./Src/main.o
- .debug_macro   0x0000000000000ff5       0x22 ./Src/main.o
- .debug_macro   0x0000000000001017       0xd9 ./Src/main.o
- .debug_macro   0x00000000000010f0     0x102d ./Src/main.o
- .debug_macro   0x000000000000211d      0x11f ./Src/main.o
- .debug_macro   0x000000000000223c    0x15e82 ./Src/main.o
- .debug_macro   0x00000000000180be       0x34 ./Src/main.o
- .debug_macro   0x00000000000180f2       0x16 ./Src/main.o
+.debug_macro    0x0000000000000000    0x183a5
+ .debug_macro   0x0000000000000000       0xce ./Src/Led.o
+ .debug_macro   0x00000000000000ce      0xa7e ./Src/Led.o
+ .debug_macro   0x0000000000000b4c       0x2f ./Src/Led.o
+ .debug_macro   0x0000000000000b7b       0x22 ./Src/Led.o
+ .debug_macro   0x0000000000000b9d       0x8e ./Src/Led.o
+ .debug_macro   0x0000000000000c2b       0x51 ./Src/Led.o
+ .debug_macro   0x0000000000000c7c      0x103 ./Src/Led.o
+ .debug_macro   0x0000000000000d7f       0x6a ./Src/Led.o
+ .debug_macro   0x0000000000000de9      0x1df ./Src/Led.o
+ .debug_macro   0x0000000000000fc8       0x1c ./Src/Led.o
+ .debug_macro   0x0000000000000fe4       0x22 ./Src/Led.o
+ .debug_macro   0x0000000000001006       0xd9 ./Src/Led.o
+ .debug_macro   0x00000000000010df     0x102d ./Src/Led.o
+ .debug_macro   0x000000000000210c      0x11f ./Src/Led.o
+ .debug_macro   0x000000000000222b    0x15e82 ./Src/Led.o
+ .debug_macro   0x00000000000180ad       0x2e ./Src/Led.o
+ .debug_macro   0x00000000000180db       0xc9 ./Src/SystemClock.o
+ .debug_macro   0x00000000000181a4       0xd8 ./Src/Timer.o
+ .debug_macro   0x000000000001827c       0x10 ./Src/Timer.o
+ .debug_macro   0x000000000001828c       0xe5 ./Src/main.o
+ .debug_macro   0x0000000000018371       0x34 ./Src/main.o
 
-.debug_line     0x0000000000000000      0x77b
- .debug_line    0x0000000000000000      0x6f7 ./Src/main.o
- .debug_line    0x00000000000006f7       0x84 ./Startup/startup_stm32f407vetx.o
+.debug_line     0x0000000000000000     0x15d2
+ .debug_line    0x0000000000000000      0x4f2 ./Src/Led.o
+ .debug_line    0x00000000000004f2      0x57c ./Src/SystemClock.o
+ .debug_line    0x0000000000000a6e      0x5dd ./Src/Timer.o
+ .debug_line    0x000000000000104b      0x503 ./Src/main.o
+ .debug_line    0x000000000000154e       0x84 ./Startup/startup_stm32f407vetx.o
 
-.debug_str      0x0000000000000000    0x87a8a
- .debug_str     0x0000000000000000    0x87a59 ./Src/main.o
-                                      0x87bd4 (size before relaxing)
- .debug_str     0x0000000000087a59       0x31 ./Startup/startup_stm32f407vetx.o
+.debug_str      0x0000000000000000    0x87ac0
+ .debug_str     0x0000000000000000    0x8790d ./Src/Led.o
+                                      0x87a7b (size before relaxing)
+ .debug_str     0x000000000008790d       0xbb ./Src/SystemClock.o
+                                      0x87a19 (size before relaxing)
+ .debug_str     0x00000000000879c8       0xb4 ./Src/Timer.o
+                                      0x87a33 (size before relaxing)
+ .debug_str     0x0000000000087a7c       0x13 ./Src/main.o
+                                      0x87a30 (size before relaxing)
+ .debug_str     0x0000000000087a8f       0x31 ./Startup/startup_stm32f407vetx.o
                                          0x62 (size before relaxing)
 
 .comment        0x0000000000000000       0x50
- .comment       0x0000000000000000       0x50 ./Src/main.o
+ .comment       0x0000000000000000       0x50 ./Src/Led.o
                                          0x51 (size before relaxing)
+ .comment       0x0000000000000050       0x51 ./Src/SystemClock.o
+ .comment       0x0000000000000050       0x51 ./Src/Timer.o
+ .comment       0x0000000000000050       0x51 ./Src/main.o
 
-.debug_frame    0x0000000000000000      0x144
- .debug_frame   0x0000000000000000      0x118 ./Src/main.o
- .debug_frame   0x0000000000000118       0x2c d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-init.o)
+.debug_frame    0x0000000000000000      0x174
+ .debug_frame   0x0000000000000000       0x38 ./Src/Led.o
+ .debug_frame   0x0000000000000038       0x88 ./Src/SystemClock.o
+ .debug_frame   0x00000000000000c0       0x5c ./Src/Timer.o
+ .debug_frame   0x000000000000011c       0x2c ./Src/main.o
+ .debug_frame   0x0000000000000148       0x2c d:/phan_mem/stm32/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-init.o)
