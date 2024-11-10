@@ -1,8 +1,8 @@
 /**
  ******************************************************************************
- * @file           : Timer.h
+ * @file           : Led.c
  * @author         : Danh Phan
- * @brief          : Library to interact to Timer
+ * @brief          : Library to interact to Led
  ******************************************************************************
  * @attention
  *
@@ -17,36 +17,33 @@
  * Version 1.0.0: Initial release
  ******************************************************************************
  */
-#ifndef TIMER_H_
-#define TIMER_H_
 
 
 // Include libraries
-#include <stm32f407xx.h>
-#include "SystemClock.h"
+#include "Led.h"
 
 
-// Macroes
-#define T_timer		0.001		// expect 1ms
-#define AutoReload	65535		// Auto-reload value
+// APIs
+void LED_init(user_led LD)
+{
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;	// IO port D clock enable
 
-
-// Prototypes
-/**
-  * @brief  Initialize Timer
-  * @param  pTIM: pointer to timer instance
-  * @retval None
-  */
-void Timer_init(TIM_TypeDef *pTIM);
-
-
-/**
-  * @brief  delay by ms
-  * @param  pTIM: pointer to timer instance
-  * @param  ms: delay by milisecond
-  * @retval None
-  */
-void Timer_delay_ms(TIM_TypeDef *pTIM, int ms);
-
-
-#endif /* TIMER_H_ */
+	// set general purpose output mode
+	switch (LD)
+	{
+		case LD3:
+			GPIOD->MODER |= GPIO_MODER_MODER13_0;
+	 		break;
+		case LD4:
+			GPIOD->MODER |= GPIO_MODER_MODER12_0;
+			break;
+		case LD5:
+			GPIOD->MODER |= GPIO_MODER_MODER14_0;
+			break;
+		case LD6:
+			GPIOD->MODER |= GPIO_MODER_MODER15_0;
+			break;
+		default:
+			break;
+	}
+}

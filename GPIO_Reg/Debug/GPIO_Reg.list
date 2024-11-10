@@ -29,23 +29,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  12 .ARM.attributes 00000030  00000000  00000000  00020004  2**0
                   CONTENTS, READONLY
- 13 .debug_info   00000642  00000000  00000000  00020034  2**0
+ 13 .debug_info   00000dcc  00000000  00000000  00020034  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 0000020d  00000000  00000000  00020676  2**0
+ 14 .debug_abbrev 000004ab  00000000  00000000  00020e00  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 00000090  00000000  00000000  00020888  2**3
+ 15 .debug_aranges 000000d8  00000000  00000000  000212b0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_ranges 00000078  00000000  00000000  00020918  2**3
+ 16 .debug_ranges 00000090  00000000  00000000  00021388  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  00018132  00000000  00000000  00020990  2**0
+ 17 .debug_macro  000183c3  00000000  00000000  00021418  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   00000763  00000000  00000000  00038ac2  2**0
+ 18 .debug_line   000015b6  00000000  00000000  000397db  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    00087ac4  00000000  00000000  00039225  2**0
+ 19 .debug_str    00087ae7  00000000  00000000  0003ad91  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000050  00000000  00000000  000c0ce9  2**0
+ 20 .comment      00000050  00000000  00000000  000c2878  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  00000194  00000000  00000000  000c0d3c  2**2
+ 21 .debug_frame  000001c4  00000000  00000000  000c28c8  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -78,325 +78,323 @@ Disassembly of section .text:
  80001e0:	20000008 	.word	0x20000008
  80001e4:	08000510 	.word	0x08000510
 
-080001e8 <SystemClock_config>:
+080001e8 <Btn_init>:
+#include "Button.h"
 
-/*
- * Initialize default system clock
- * */
-void SystemClock_config()
+
+// APIs
+void Btn_init(GPIO_TypeDef* pPort)
 {
  80001e8:	b480      	push	{r7}
- 80001ea:	af00      	add	r7, sp, #0
-	RCC->CR |= RCC_CR_HSION;				// enable HSI
- 80001ec:	4b15      	ldr	r3, [pc, #84]	; (8000244 <SystemClock_config+0x5c>)
- 80001ee:	681b      	ldr	r3, [r3, #0]
- 80001f0:	4a14      	ldr	r2, [pc, #80]	; (8000244 <SystemClock_config+0x5c>)
- 80001f2:	f043 0301 	orr.w	r3, r3, #1
- 80001f6:	6013      	str	r3, [r2, #0]
-	while (!(RCC->CR & RCC_CR_HSIRDY));		// see that HSI is ready or not
- 80001f8:	bf00      	nop
- 80001fa:	4b12      	ldr	r3, [pc, #72]	; (8000244 <SystemClock_config+0x5c>)
- 80001fc:	681b      	ldr	r3, [r3, #0]
- 80001fe:	f003 0302 	and.w	r3, r3, #2
- 8000202:	2b00      	cmp	r3, #0
- 8000204:	d0f9      	beq.n	80001fa <SystemClock_config+0x12>
-
-	// Power regulator
-	PWR->CR |= PWR_CR_VOS;
- 8000206:	4b10      	ldr	r3, [pc, #64]	; (8000248 <SystemClock_config+0x60>)
- 8000208:	681b      	ldr	r3, [r3, #0]
- 800020a:	4a0f      	ldr	r2, [pc, #60]	; (8000248 <SystemClock_config+0x60>)
- 800020c:	f443 4380 	orr.w	r3, r3, #16384	; 0x4000
- 8000210:	6013      	str	r3, [r2, #0]
-
-	// Flash latency setup
-	FLASH->ACR |= FLASH_ACR_DCEN | FLASH_ACR_ICEN | FLASH_ACR_PRFTEN | FLASH_ACR_LATENCY_5WS;
- 8000212:	4b0e      	ldr	r3, [pc, #56]	; (800024c <SystemClock_config+0x64>)
- 8000214:	681b      	ldr	r3, [r3, #0]
- 8000216:	4a0d      	ldr	r2, [pc, #52]	; (800024c <SystemClock_config+0x64>)
- 8000218:	f443 63e0 	orr.w	r3, r3, #1792	; 0x700
- 800021c:	f043 0305 	orr.w	r3, r3, #5
- 8000220:	6013      	str	r3, [r2, #0]
-
-	// HSI oscillator used as system clock
-	RCC->CFGR |= RCC_CFGR_SW_HSI;
- 8000222:	4b08      	ldr	r3, [pc, #32]	; (8000244 <SystemClock_config+0x5c>)
- 8000224:	4a07      	ldr	r2, [pc, #28]	; (8000244 <SystemClock_config+0x5c>)
- 8000226:	689b      	ldr	r3, [r3, #8]
- 8000228:	6093      	str	r3, [r2, #8]
-	while ((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_HSI);
- 800022a:	bf00      	nop
- 800022c:	4b05      	ldr	r3, [pc, #20]	; (8000244 <SystemClock_config+0x5c>)
- 800022e:	689b      	ldr	r3, [r3, #8]
- 8000230:	f003 030c 	and.w	r3, r3, #12
- 8000234:	2b00      	cmp	r3, #0
- 8000236:	d1f9      	bne.n	800022c <SystemClock_config+0x44>
+ 80001ea:	b083      	sub	sp, #12
+ 80001ec:	af00      	add	r7, sp, #0
+ 80001ee:	6078      	str	r0, [r7, #4]
+	if (pPort == GPIOA)
+ 80001f0:	687b      	ldr	r3, [r7, #4]
+ 80001f2:	4a1d      	ldr	r2, [pc, #116]	; (8000268 <Btn_init+0x80>)
+ 80001f4:	4293      	cmp	r3, r2
+ 80001f6:	d106      	bne.n	8000206 <Btn_init+0x1e>
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;	// IO port A clock enable
+ 80001f8:	4b1c      	ldr	r3, [pc, #112]	; (800026c <Btn_init+0x84>)
+ 80001fa:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+ 80001fc:	4a1b      	ldr	r2, [pc, #108]	; (800026c <Btn_init+0x84>)
+ 80001fe:	f043 0301 	orr.w	r3, r3, #1
+ 8000202:	6313      	str	r3, [r2, #48]	; 0x30
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;	// IO port C clock enable
+	else if (pPort == GPIOD)
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;	// IO port D clock enable
+	else if (pPort == GPIOE)
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOEEN;	// IO port E clock enable
 }
- 8000238:	bf00      	nop
- 800023a:	bf00      	nop
- 800023c:	46bd      	mov	sp, r7
- 800023e:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8000242:	4770      	bx	lr
- 8000244:	40023800 	.word	0x40023800
- 8000248:	40007000 	.word	0x40007000
- 800024c:	40023c00 	.word	0x40023c00
+ 8000204:	e02a      	b.n	800025c <Btn_init+0x74>
+	else if (pPort == GPIOB)
+ 8000206:	687b      	ldr	r3, [r7, #4]
+ 8000208:	4a19      	ldr	r2, [pc, #100]	; (8000270 <Btn_init+0x88>)
+ 800020a:	4293      	cmp	r3, r2
+ 800020c:	d106      	bne.n	800021c <Btn_init+0x34>
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;	// IO port B clock enable
+ 800020e:	4b17      	ldr	r3, [pc, #92]	; (800026c <Btn_init+0x84>)
+ 8000210:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+ 8000212:	4a16      	ldr	r2, [pc, #88]	; (800026c <Btn_init+0x84>)
+ 8000214:	f043 0302 	orr.w	r3, r3, #2
+ 8000218:	6313      	str	r3, [r2, #48]	; 0x30
+}
+ 800021a:	e01f      	b.n	800025c <Btn_init+0x74>
+	else if (pPort == GPIOC)
+ 800021c:	687b      	ldr	r3, [r7, #4]
+ 800021e:	4a15      	ldr	r2, [pc, #84]	; (8000274 <Btn_init+0x8c>)
+ 8000220:	4293      	cmp	r3, r2
+ 8000222:	d106      	bne.n	8000232 <Btn_init+0x4a>
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;	// IO port C clock enable
+ 8000224:	4b11      	ldr	r3, [pc, #68]	; (800026c <Btn_init+0x84>)
+ 8000226:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+ 8000228:	4a10      	ldr	r2, [pc, #64]	; (800026c <Btn_init+0x84>)
+ 800022a:	f043 0304 	orr.w	r3, r3, #4
+ 800022e:	6313      	str	r3, [r2, #48]	; 0x30
+}
+ 8000230:	e014      	b.n	800025c <Btn_init+0x74>
+	else if (pPort == GPIOD)
+ 8000232:	687b      	ldr	r3, [r7, #4]
+ 8000234:	4a10      	ldr	r2, [pc, #64]	; (8000278 <Btn_init+0x90>)
+ 8000236:	4293      	cmp	r3, r2
+ 8000238:	d106      	bne.n	8000248 <Btn_init+0x60>
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;	// IO port D clock enable
+ 800023a:	4b0c      	ldr	r3, [pc, #48]	; (800026c <Btn_init+0x84>)
+ 800023c:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+ 800023e:	4a0b      	ldr	r2, [pc, #44]	; (800026c <Btn_init+0x84>)
+ 8000240:	f043 0308 	orr.w	r3, r3, #8
+ 8000244:	6313      	str	r3, [r2, #48]	; 0x30
+}
+ 8000246:	e009      	b.n	800025c <Btn_init+0x74>
+	else if (pPort == GPIOE)
+ 8000248:	687b      	ldr	r3, [r7, #4]
+ 800024a:	4a0c      	ldr	r2, [pc, #48]	; (800027c <Btn_init+0x94>)
+ 800024c:	4293      	cmp	r3, r2
+ 800024e:	d105      	bne.n	800025c <Btn_init+0x74>
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOEEN;	// IO port E clock enable
+ 8000250:	4b06      	ldr	r3, [pc, #24]	; (800026c <Btn_init+0x84>)
+ 8000252:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+ 8000254:	4a05      	ldr	r2, [pc, #20]	; (800026c <Btn_init+0x84>)
+ 8000256:	f043 0310 	orr.w	r3, r3, #16
+ 800025a:	6313      	str	r3, [r2, #48]	; 0x30
+}
+ 800025c:	bf00      	nop
+ 800025e:	370c      	adds	r7, #12
+ 8000260:	46bd      	mov	sp, r7
+ 8000262:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000266:	4770      	bx	lr
+ 8000268:	40020000 	.word	0x40020000
+ 800026c:	40023800 	.word	0x40023800
+ 8000270:	40020400 	.word	0x40020400
+ 8000274:	40020800 	.word	0x40020800
+ 8000278:	40020c00 	.word	0x40020c00
+ 800027c:	40021000 	.word	0x40021000
 
-08000250 <LED_init>:
+08000280 <btn_isPressed>:
 
-/*
- * Init LED
- * */
+
+_Bool btn_isPressed (GPIO_TypeDef* pPort, uint8_t pin, GPIO_pull pull)
+{
+ 8000280:	b480      	push	{r7}
+ 8000282:	b083      	sub	sp, #12
+ 8000284:	af00      	add	r7, sp, #0
+ 8000286:	6078      	str	r0, [r7, #4]
+ 8000288:	460b      	mov	r3, r1
+ 800028a:	70fb      	strb	r3, [r7, #3]
+ 800028c:	4613      	mov	r3, r2
+ 800028e:	70bb      	strb	r3, [r7, #2]
+	if (pull == pull_down)
+ 8000290:	78bb      	ldrb	r3, [r7, #2]
+ 8000292:	2b00      	cmp	r3, #0
+ 8000294:	d10c      	bne.n	80002b0 <btn_isPressed+0x30>
+		return ((pPort->IDR & (1<<pin)) == 1);
+ 8000296:	687b      	ldr	r3, [r7, #4]
+ 8000298:	691b      	ldr	r3, [r3, #16]
+ 800029a:	78fa      	ldrb	r2, [r7, #3]
+ 800029c:	2101      	movs	r1, #1
+ 800029e:	fa01 f202 	lsl.w	r2, r1, r2
+ 80002a2:	4013      	ands	r3, r2
+ 80002a4:	2b01      	cmp	r3, #1
+ 80002a6:	bf0c      	ite	eq
+ 80002a8:	2301      	moveq	r3, #1
+ 80002aa:	2300      	movne	r3, #0
+ 80002ac:	b2db      	uxtb	r3, r3
+ 80002ae:	e00b      	b.n	80002c8 <btn_isPressed+0x48>
+	else
+		return ((pPort->IDR & (1<<pin)) == 0);
+ 80002b0:	687b      	ldr	r3, [r7, #4]
+ 80002b2:	691b      	ldr	r3, [r3, #16]
+ 80002b4:	78fa      	ldrb	r2, [r7, #3]
+ 80002b6:	2101      	movs	r1, #1
+ 80002b8:	fa01 f202 	lsl.w	r2, r1, r2
+ 80002bc:	4013      	ands	r3, r2
+ 80002be:	2b00      	cmp	r3, #0
+ 80002c0:	bf0c      	ite	eq
+ 80002c2:	2301      	moveq	r3, #1
+ 80002c4:	2300      	movne	r3, #0
+ 80002c6:	b2db      	uxtb	r3, r3
+}
+ 80002c8:	4618      	mov	r0, r3
+ 80002ca:	370c      	adds	r7, #12
+ 80002cc:	46bd      	mov	sp, r7
+ 80002ce:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80002d2:	4770      	bx	lr
+
+080002d4 <waitUntil_btn_isReleased>:
+
+
+void waitUntil_btn_isReleased(GPIO_TypeDef* pPort, uint8_t pin, GPIO_pull pull)
+{
+ 80002d4:	b580      	push	{r7, lr}
+ 80002d6:	b082      	sub	sp, #8
+ 80002d8:	af00      	add	r7, sp, #0
+ 80002da:	6078      	str	r0, [r7, #4]
+ 80002dc:	460b      	mov	r3, r1
+ 80002de:	70fb      	strb	r3, [r7, #3]
+ 80002e0:	4613      	mov	r3, r2
+ 80002e2:	70bb      	strb	r3, [r7, #2]
+	while (btn_isPressed (pPort, pin, pull));
+ 80002e4:	bf00      	nop
+ 80002e6:	78ba      	ldrb	r2, [r7, #2]
+ 80002e8:	78fb      	ldrb	r3, [r7, #3]
+ 80002ea:	4619      	mov	r1, r3
+ 80002ec:	6878      	ldr	r0, [r7, #4]
+ 80002ee:	f7ff ffc7 	bl	8000280 <btn_isPressed>
+ 80002f2:	4603      	mov	r3, r0
+ 80002f4:	2b00      	cmp	r3, #0
+ 80002f6:	d1f6      	bne.n	80002e6 <waitUntil_btn_isReleased+0x12>
+}
+ 80002f8:	bf00      	nop
+ 80002fa:	bf00      	nop
+ 80002fc:	3708      	adds	r7, #8
+ 80002fe:	46bd      	mov	sp, r7
+ 8000300:	bd80      	pop	{r7, pc}
+	...
+
+08000304 <LED_init>:
+#include "Led.h"
+
+
+// APIs
 void LED_init(user_led LD)
 {
- 8000250:	b480      	push	{r7}
- 8000252:	b083      	sub	sp, #12
- 8000254:	af00      	add	r7, sp, #0
- 8000256:	4603      	mov	r3, r0
- 8000258:	71fb      	strb	r3, [r7, #7]
+ 8000304:	b480      	push	{r7}
+ 8000306:	b083      	sub	sp, #12
+ 8000308:	af00      	add	r7, sp, #0
+ 800030a:	4603      	mov	r3, r0
+ 800030c:	71fb      	strb	r3, [r7, #7]
 	RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;	// IO port D clock enable
- 800025a:	4b1c      	ldr	r3, [pc, #112]	; (80002cc <LED_init+0x7c>)
- 800025c:	6b1b      	ldr	r3, [r3, #48]	; 0x30
- 800025e:	4a1b      	ldr	r2, [pc, #108]	; (80002cc <LED_init+0x7c>)
- 8000260:	f043 0308 	orr.w	r3, r3, #8
- 8000264:	6313      	str	r3, [r2, #48]	; 0x30
+ 800030e:	4b1c      	ldr	r3, [pc, #112]	; (8000380 <LED_init+0x7c>)
+ 8000310:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+ 8000312:	4a1b      	ldr	r2, [pc, #108]	; (8000380 <LED_init+0x7c>)
+ 8000314:	f043 0308 	orr.w	r3, r3, #8
+ 8000318:	6313      	str	r3, [r2, #48]	; 0x30
 
 	// set general purpose output mode
 	switch (LD)
- 8000266:	79fb      	ldrb	r3, [r7, #7]
- 8000268:	3b0c      	subs	r3, #12
- 800026a:	2b03      	cmp	r3, #3
- 800026c:	d826      	bhi.n	80002bc <LED_init+0x6c>
- 800026e:	a201      	add	r2, pc, #4	; (adr r2, 8000274 <LED_init+0x24>)
- 8000270:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
- 8000274:	08000293 	.word	0x08000293
- 8000278:	08000285 	.word	0x08000285
- 800027c:	080002a1 	.word	0x080002a1
- 8000280:	080002af 	.word	0x080002af
+ 800031a:	79fb      	ldrb	r3, [r7, #7]
+ 800031c:	3b0c      	subs	r3, #12
+ 800031e:	2b03      	cmp	r3, #3
+ 8000320:	d826      	bhi.n	8000370 <LED_init+0x6c>
+ 8000322:	a201      	add	r2, pc, #4	; (adr r2, 8000328 <LED_init+0x24>)
+ 8000324:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
+ 8000328:	08000347 	.word	0x08000347
+ 800032c:	08000339 	.word	0x08000339
+ 8000330:	08000355 	.word	0x08000355
+ 8000334:	08000363 	.word	0x08000363
 	{
 		case LD3:
 			GPIOD->MODER |= GPIO_MODER_MODER13_0;
- 8000284:	4b12      	ldr	r3, [pc, #72]	; (80002d0 <LED_init+0x80>)
- 8000286:	681b      	ldr	r3, [r3, #0]
- 8000288:	4a11      	ldr	r2, [pc, #68]	; (80002d0 <LED_init+0x80>)
- 800028a:	f043 6380 	orr.w	r3, r3, #67108864	; 0x4000000
- 800028e:	6013      	str	r3, [r2, #0]
+ 8000338:	4b12      	ldr	r3, [pc, #72]	; (8000384 <LED_init+0x80>)
+ 800033a:	681b      	ldr	r3, [r3, #0]
+ 800033c:	4a11      	ldr	r2, [pc, #68]	; (8000384 <LED_init+0x80>)
+ 800033e:	f043 6380 	orr.w	r3, r3, #67108864	; 0x4000000
+ 8000342:	6013      	str	r3, [r2, #0]
 	 		break;
- 8000290:	e015      	b.n	80002be <LED_init+0x6e>
+ 8000344:	e015      	b.n	8000372 <LED_init+0x6e>
 		case LD4:
 			GPIOD->MODER |= GPIO_MODER_MODER12_0;
- 8000292:	4b0f      	ldr	r3, [pc, #60]	; (80002d0 <LED_init+0x80>)
- 8000294:	681b      	ldr	r3, [r3, #0]
- 8000296:	4a0e      	ldr	r2, [pc, #56]	; (80002d0 <LED_init+0x80>)
- 8000298:	f043 7380 	orr.w	r3, r3, #16777216	; 0x1000000
- 800029c:	6013      	str	r3, [r2, #0]
+ 8000346:	4b0f      	ldr	r3, [pc, #60]	; (8000384 <LED_init+0x80>)
+ 8000348:	681b      	ldr	r3, [r3, #0]
+ 800034a:	4a0e      	ldr	r2, [pc, #56]	; (8000384 <LED_init+0x80>)
+ 800034c:	f043 7380 	orr.w	r3, r3, #16777216	; 0x1000000
+ 8000350:	6013      	str	r3, [r2, #0]
 			break;
- 800029e:	e00e      	b.n	80002be <LED_init+0x6e>
+ 8000352:	e00e      	b.n	8000372 <LED_init+0x6e>
 		case LD5:
 			GPIOD->MODER |= GPIO_MODER_MODER14_0;
- 80002a0:	4b0b      	ldr	r3, [pc, #44]	; (80002d0 <LED_init+0x80>)
- 80002a2:	681b      	ldr	r3, [r3, #0]
- 80002a4:	4a0a      	ldr	r2, [pc, #40]	; (80002d0 <LED_init+0x80>)
- 80002a6:	f043 5380 	orr.w	r3, r3, #268435456	; 0x10000000
- 80002aa:	6013      	str	r3, [r2, #0]
+ 8000354:	4b0b      	ldr	r3, [pc, #44]	; (8000384 <LED_init+0x80>)
+ 8000356:	681b      	ldr	r3, [r3, #0]
+ 8000358:	4a0a      	ldr	r2, [pc, #40]	; (8000384 <LED_init+0x80>)
+ 800035a:	f043 5380 	orr.w	r3, r3, #268435456	; 0x10000000
+ 800035e:	6013      	str	r3, [r2, #0]
 			break;
- 80002ac:	e007      	b.n	80002be <LED_init+0x6e>
+ 8000360:	e007      	b.n	8000372 <LED_init+0x6e>
 		case LD6:
 			GPIOD->MODER |= GPIO_MODER_MODER15_0;
- 80002ae:	4b08      	ldr	r3, [pc, #32]	; (80002d0 <LED_init+0x80>)
- 80002b0:	681b      	ldr	r3, [r3, #0]
- 80002b2:	4a07      	ldr	r2, [pc, #28]	; (80002d0 <LED_init+0x80>)
- 80002b4:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
- 80002b8:	6013      	str	r3, [r2, #0]
+ 8000362:	4b08      	ldr	r3, [pc, #32]	; (8000384 <LED_init+0x80>)
+ 8000364:	681b      	ldr	r3, [r3, #0]
+ 8000366:	4a07      	ldr	r2, [pc, #28]	; (8000384 <LED_init+0x80>)
+ 8000368:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
+ 800036c:	6013      	str	r3, [r2, #0]
 			break;
- 80002ba:	e000      	b.n	80002be <LED_init+0x6e>
+ 800036e:	e000      	b.n	8000372 <LED_init+0x6e>
 		default:
 			break;
- 80002bc:	bf00      	nop
+ 8000370:	bf00      	nop
 	}
 }
- 80002be:	bf00      	nop
- 80002c0:	370c      	adds	r7, #12
- 80002c2:	46bd      	mov	sp, r7
- 80002c4:	f85d 7b04 	ldr.w	r7, [sp], #4
- 80002c8:	4770      	bx	lr
- 80002ca:	bf00      	nop
- 80002cc:	40023800 	.word	0x40023800
- 80002d0:	40020c00 	.word	0x40020c00
+ 8000372:	bf00      	nop
+ 8000374:	370c      	adds	r7, #12
+ 8000376:	46bd      	mov	sp, r7
+ 8000378:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800037c:	4770      	bx	lr
+ 800037e:	bf00      	nop
+ 8000380:	40023800 	.word	0x40023800
+ 8000384:	40020c00 	.word	0x40020c00
 
-080002d4 <Btn_init>:
+08000388 <SystemClock_config>:
+const uint8_t APBPrescTable[8]  = {0, 0, 0, 0, 1, 2, 3, 4};
 
-/* APIs */
 
-// Initialize port of button
-void Btn_init(GPIO_TypeDef* port)
+// APIs
+void SystemClock_config(void)
 {
- 80002d4:	b480      	push	{r7}
- 80002d6:	b083      	sub	sp, #12
- 80002d8:	af00      	add	r7, sp, #0
- 80002da:	6078      	str	r0, [r7, #4]
-	if (port == GPIOA)
- 80002dc:	687b      	ldr	r3, [r7, #4]
- 80002de:	4a1d      	ldr	r2, [pc, #116]	; (8000354 <Btn_init+0x80>)
- 80002e0:	4293      	cmp	r3, r2
- 80002e2:	d106      	bne.n	80002f2 <Btn_init+0x1e>
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;	// IO port A clock enable
- 80002e4:	4b1c      	ldr	r3, [pc, #112]	; (8000358 <Btn_init+0x84>)
- 80002e6:	6b1b      	ldr	r3, [r3, #48]	; 0x30
- 80002e8:	4a1b      	ldr	r2, [pc, #108]	; (8000358 <Btn_init+0x84>)
- 80002ea:	f043 0301 	orr.w	r3, r3, #1
- 80002ee:	6313      	str	r3, [r2, #48]	; 0x30
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;	// IO port C clock enable
-	else if (port == GPIOD)
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;	// IO port D clock enable
-	else if (port == GPIOE)
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOEEN;	// IO port E clock enable
-}
- 80002f0:	e02a      	b.n	8000348 <Btn_init+0x74>
-	else if (port == GPIOB)
- 80002f2:	687b      	ldr	r3, [r7, #4]
- 80002f4:	4a19      	ldr	r2, [pc, #100]	; (800035c <Btn_init+0x88>)
- 80002f6:	4293      	cmp	r3, r2
- 80002f8:	d106      	bne.n	8000308 <Btn_init+0x34>
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;	// IO port B clock enable
- 80002fa:	4b17      	ldr	r3, [pc, #92]	; (8000358 <Btn_init+0x84>)
- 80002fc:	6b1b      	ldr	r3, [r3, #48]	; 0x30
- 80002fe:	4a16      	ldr	r2, [pc, #88]	; (8000358 <Btn_init+0x84>)
- 8000300:	f043 0302 	orr.w	r3, r3, #2
- 8000304:	6313      	str	r3, [r2, #48]	; 0x30
-}
- 8000306:	e01f      	b.n	8000348 <Btn_init+0x74>
-	else if (port == GPIOC)
- 8000308:	687b      	ldr	r3, [r7, #4]
- 800030a:	4a15      	ldr	r2, [pc, #84]	; (8000360 <Btn_init+0x8c>)
- 800030c:	4293      	cmp	r3, r2
- 800030e:	d106      	bne.n	800031e <Btn_init+0x4a>
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;	// IO port C clock enable
- 8000310:	4b11      	ldr	r3, [pc, #68]	; (8000358 <Btn_init+0x84>)
- 8000312:	6b1b      	ldr	r3, [r3, #48]	; 0x30
- 8000314:	4a10      	ldr	r2, [pc, #64]	; (8000358 <Btn_init+0x84>)
- 8000316:	f043 0304 	orr.w	r3, r3, #4
- 800031a:	6313      	str	r3, [r2, #48]	; 0x30
-}
- 800031c:	e014      	b.n	8000348 <Btn_init+0x74>
-	else if (port == GPIOD)
- 800031e:	687b      	ldr	r3, [r7, #4]
- 8000320:	4a10      	ldr	r2, [pc, #64]	; (8000364 <Btn_init+0x90>)
- 8000322:	4293      	cmp	r3, r2
- 8000324:	d106      	bne.n	8000334 <Btn_init+0x60>
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;	// IO port D clock enable
- 8000326:	4b0c      	ldr	r3, [pc, #48]	; (8000358 <Btn_init+0x84>)
- 8000328:	6b1b      	ldr	r3, [r3, #48]	; 0x30
- 800032a:	4a0b      	ldr	r2, [pc, #44]	; (8000358 <Btn_init+0x84>)
- 800032c:	f043 0308 	orr.w	r3, r3, #8
- 8000330:	6313      	str	r3, [r2, #48]	; 0x30
-}
- 8000332:	e009      	b.n	8000348 <Btn_init+0x74>
-	else if (port == GPIOE)
- 8000334:	687b      	ldr	r3, [r7, #4]
- 8000336:	4a0c      	ldr	r2, [pc, #48]	; (8000368 <Btn_init+0x94>)
- 8000338:	4293      	cmp	r3, r2
- 800033a:	d105      	bne.n	8000348 <Btn_init+0x74>
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOEEN;	// IO port E clock enable
- 800033c:	4b06      	ldr	r3, [pc, #24]	; (8000358 <Btn_init+0x84>)
- 800033e:	6b1b      	ldr	r3, [r3, #48]	; 0x30
- 8000340:	4a05      	ldr	r2, [pc, #20]	; (8000358 <Btn_init+0x84>)
- 8000342:	f043 0310 	orr.w	r3, r3, #16
- 8000346:	6313      	str	r3, [r2, #48]	; 0x30
-}
- 8000348:	bf00      	nop
- 800034a:	370c      	adds	r7, #12
- 800034c:	46bd      	mov	sp, r7
- 800034e:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8000352:	4770      	bx	lr
- 8000354:	40020000 	.word	0x40020000
- 8000358:	40023800 	.word	0x40023800
- 800035c:	40020400 	.word	0x40020400
- 8000360:	40020800 	.word	0x40020800
- 8000364:	40020c00 	.word	0x40020c00
- 8000368:	40021000 	.word	0x40021000
+ 8000388:	b480      	push	{r7}
+ 800038a:	af00      	add	r7, sp, #0
+	RCC->CR |= RCC_CR_HSION;				// enable HSI
+ 800038c:	4b15      	ldr	r3, [pc, #84]	; (80003e4 <SystemClock_config+0x5c>)
+ 800038e:	681b      	ldr	r3, [r3, #0]
+ 8000390:	4a14      	ldr	r2, [pc, #80]	; (80003e4 <SystemClock_config+0x5c>)
+ 8000392:	f043 0301 	orr.w	r3, r3, #1
+ 8000396:	6013      	str	r3, [r2, #0]
+	while (!(RCC->CR & RCC_CR_HSIRDY));		// see that HSI is ready or not
+ 8000398:	bf00      	nop
+ 800039a:	4b12      	ldr	r3, [pc, #72]	; (80003e4 <SystemClock_config+0x5c>)
+ 800039c:	681b      	ldr	r3, [r3, #0]
+ 800039e:	f003 0302 	and.w	r3, r3, #2
+ 80003a2:	2b00      	cmp	r3, #0
+ 80003a4:	d0f9      	beq.n	800039a <SystemClock_config+0x12>
 
-0800036c <btn_isPressed>:
+	// Power regulator
+	PWR->CR |= PWR_CR_VOS;
+ 80003a6:	4b10      	ldr	r3, [pc, #64]	; (80003e8 <SystemClock_config+0x60>)
+ 80003a8:	681b      	ldr	r3, [r3, #0]
+ 80003aa:	4a0f      	ldr	r2, [pc, #60]	; (80003e8 <SystemClock_config+0x60>)
+ 80003ac:	f443 4380 	orr.w	r3, r3, #16384	; 0x4000
+ 80003b0:	6013      	str	r3, [r2, #0]
 
+	// Flash latency setup
+	FLASH->ACR |= FLASH_ACR_DCEN | FLASH_ACR_ICEN | FLASH_ACR_PRFTEN | FLASH_ACR_LATENCY_5WS;
+ 80003b2:	4b0e      	ldr	r3, [pc, #56]	; (80003ec <SystemClock_config+0x64>)
+ 80003b4:	681b      	ldr	r3, [r3, #0]
+ 80003b6:	4a0d      	ldr	r2, [pc, #52]	; (80003ec <SystemClock_config+0x64>)
+ 80003b8:	f443 63e0 	orr.w	r3, r3, #1792	; 0x700
+ 80003bc:	f043 0305 	orr.w	r3, r3, #5
+ 80003c0:	6013      	str	r3, [r2, #0]
 
-// Check whether button is pressed or not
-_Bool btn_isPressed (GPIO_TypeDef* port, uint8_t pin, GPIO_pull pull)
-{
- 800036c:	b480      	push	{r7}
- 800036e:	b083      	sub	sp, #12
- 8000370:	af00      	add	r7, sp, #0
- 8000372:	6078      	str	r0, [r7, #4]
- 8000374:	460b      	mov	r3, r1
- 8000376:	70fb      	strb	r3, [r7, #3]
- 8000378:	4613      	mov	r3, r2
- 800037a:	70bb      	strb	r3, [r7, #2]
-	if (pull == pull_down)
- 800037c:	78bb      	ldrb	r3, [r7, #2]
- 800037e:	2b00      	cmp	r3, #0
- 8000380:	d10c      	bne.n	800039c <btn_isPressed+0x30>
-		return ((port->IDR & (1<<pin)) == 1);
- 8000382:	687b      	ldr	r3, [r7, #4]
- 8000384:	691b      	ldr	r3, [r3, #16]
- 8000386:	78fa      	ldrb	r2, [r7, #3]
- 8000388:	2101      	movs	r1, #1
- 800038a:	fa01 f202 	lsl.w	r2, r1, r2
- 800038e:	4013      	ands	r3, r2
- 8000390:	2b01      	cmp	r3, #1
- 8000392:	bf0c      	ite	eq
- 8000394:	2301      	moveq	r3, #1
- 8000396:	2300      	movne	r3, #0
- 8000398:	b2db      	uxtb	r3, r3
- 800039a:	e00b      	b.n	80003b4 <btn_isPressed+0x48>
-	else
-		return ((port->IDR & (1<<pin)) == 0);
- 800039c:	687b      	ldr	r3, [r7, #4]
- 800039e:	691b      	ldr	r3, [r3, #16]
- 80003a0:	78fa      	ldrb	r2, [r7, #3]
- 80003a2:	2101      	movs	r1, #1
- 80003a4:	fa01 f202 	lsl.w	r2, r1, r2
- 80003a8:	4013      	ands	r3, r2
- 80003aa:	2b00      	cmp	r3, #0
- 80003ac:	bf0c      	ite	eq
- 80003ae:	2301      	moveq	r3, #1
- 80003b0:	2300      	movne	r3, #0
- 80003b2:	b2db      	uxtb	r3, r3
+	// HSI oscillator used as system clock
+	RCC->CFGR |= RCC_CFGR_SW_HSI;
+ 80003c2:	4b08      	ldr	r3, [pc, #32]	; (80003e4 <SystemClock_config+0x5c>)
+ 80003c4:	4a07      	ldr	r2, [pc, #28]	; (80003e4 <SystemClock_config+0x5c>)
+ 80003c6:	689b      	ldr	r3, [r3, #8]
+ 80003c8:	6093      	str	r3, [r2, #8]
+	while ((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_HSI);
+ 80003ca:	bf00      	nop
+ 80003cc:	4b05      	ldr	r3, [pc, #20]	; (80003e4 <SystemClock_config+0x5c>)
+ 80003ce:	689b      	ldr	r3, [r3, #8]
+ 80003d0:	f003 030c 	and.w	r3, r3, #12
+ 80003d4:	2b00      	cmp	r3, #0
+ 80003d6:	d1f9      	bne.n	80003cc <SystemClock_config+0x44>
 }
- 80003b4:	4618      	mov	r0, r3
- 80003b6:	370c      	adds	r7, #12
- 80003b8:	46bd      	mov	sp, r7
- 80003ba:	f85d 7b04 	ldr.w	r7, [sp], #4
- 80003be:	4770      	bx	lr
-
-080003c0 <waitUntil_btn_isReleased>:
-
-
-// Wait until button is released
-void waitUntil_btn_isReleased(GPIO_TypeDef* port, uint8_t pin, GPIO_pull pull)
-{
- 80003c0:	b580      	push	{r7, lr}
- 80003c2:	b082      	sub	sp, #8
- 80003c4:	af00      	add	r7, sp, #0
- 80003c6:	6078      	str	r0, [r7, #4]
- 80003c8:	460b      	mov	r3, r1
- 80003ca:	70fb      	strb	r3, [r7, #3]
- 80003cc:	4613      	mov	r3, r2
- 80003ce:	70bb      	strb	r3, [r7, #2]
-	while (btn_isPressed (port, pin, pull));
- 80003d0:	bf00      	nop
- 80003d2:	78ba      	ldrb	r2, [r7, #2]
- 80003d4:	78fb      	ldrb	r3, [r7, #3]
- 80003d6:	4619      	mov	r1, r3
- 80003d8:	6878      	ldr	r0, [r7, #4]
- 80003da:	f7ff ffc7 	bl	800036c <btn_isPressed>
- 80003de:	4603      	mov	r3, r0
- 80003e0:	2b00      	cmp	r3, #0
- 80003e2:	d1f6      	bne.n	80003d2 <waitUntil_btn_isReleased+0x12>
-}
- 80003e4:	bf00      	nop
- 80003e6:	bf00      	nop
- 80003e8:	3708      	adds	r7, #8
- 80003ea:	46bd      	mov	sp, r7
- 80003ec:	bd80      	pop	{r7, pc}
-	...
+ 80003d8:	bf00      	nop
+ 80003da:	bf00      	nop
+ 80003dc:	46bd      	mov	sp, r7
+ 80003de:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80003e2:	4770      	bx	lr
+ 80003e4:	40023800 	.word	0x40023800
+ 80003e8:	40007000 	.word	0x40007000
+ 80003ec:	40023c00 	.word	0x40023c00
 
 080003f0 <main>:
 
@@ -408,15 +406,15 @@ int main()
  80003f0:	b580      	push	{r7, lr}
  80003f2:	af00      	add	r7, sp, #0
 	SystemClock_config();
- 80003f4:	f7ff fef8 	bl	80001e8 <SystemClock_config>
+ 80003f4:	f7ff ffc8 	bl	8000388 <SystemClock_config>
 	LED_init(led);
  80003f8:	4b1b      	ldr	r3, [pc, #108]	; (8000468 <main+0x78>)
  80003fa:	781b      	ldrb	r3, [r3, #0]
  80003fc:	4618      	mov	r0, r3
- 80003fe:	f7ff ff27 	bl	8000250 <LED_init>
+ 80003fe:	f7ff ff81 	bl	8000304 <LED_init>
 	Btn_init(port_btn);
  8000402:	481a      	ldr	r0, [pc, #104]	; (800046c <main+0x7c>)
- 8000404:	f7ff ff66 	bl	80002d4 <Btn_init>
+ 8000404:	f7ff fef0 	bl	80001e8 <Btn_init>
 
 	while(1)
 	{
@@ -424,7 +422,7 @@ int main()
  8000408:	2201      	movs	r2, #1
  800040a:	2100      	movs	r1, #0
  800040c:	4817      	ldr	r0, [pc, #92]	; (800046c <main+0x7c>)
- 800040e:	f7ff ffad 	bl	800036c <btn_isPressed>
+ 800040e:	f7ff ff37 	bl	8000280 <btn_isPressed>
  8000412:	4603      	mov	r3, r0
  8000414:	2b00      	cmp	r3, #0
  8000416:	d0f7      	beq.n	8000408 <main+0x18>
@@ -433,7 +431,7 @@ int main()
  8000418:	2201      	movs	r2, #1
  800041a:	2100      	movs	r1, #0
  800041c:	4813      	ldr	r0, [pc, #76]	; (800046c <main+0x7c>)
- 800041e:	f7ff ffcf 	bl	80003c0 <waitUntil_btn_isReleased>
+ 800041e:	f7ff ff59 	bl	80002d4 <waitUntil_btn_isReleased>
 			toggle_led(led);
  8000422:	4b13      	ldr	r3, [pc, #76]	; (8000470 <main+0x80>)
  8000424:	695b      	ldr	r3, [r3, #20]

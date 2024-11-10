@@ -1,0 +1,3 @@
+../Src/Button.c:27:6:Btn_init	16	static
+../Src/Button.c:42:7:btn_isPressed	16	static
+../Src/Button.c:51:6:waitUntil_btn_isReleased	16	static

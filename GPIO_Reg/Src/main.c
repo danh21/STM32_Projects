@@ -14,11 +14,11 @@
  * If no LICENSE file comes with this software, it is provided AS-IS.
  *
  *							REVISION HISTORY
- * Version 1.0: blink led periodically using ODR register
- * Version 1.1: blink led periodically using BSRR register
+ * Version 1.0.0: blink led periodically using ODR register
+ * Version 1.1.0: blink led periodically using BSRR register
  *
- * Version 2.0: toggle led by pressing button using polling technique
- *
+ * Version 2.0.0: toggle led by pressing button using polling technique
+ * Version 2.0.1: refactor code, separate .c and .h files
  ******************************************************************************
  */
 

@@ -1,10 +1,2 @@
-../Inc/SystemClock.h:28:6:SystemClock_config	4	static
-../Inc/SystemClock.h:49:10:Get_HCLK_freq	4	static
-../Inc/SystemClock.h:59:10:Get_PCLK1_freq	8	static
-../Inc/SystemClock.h:70:10:Get_PCLK2_freq	8	static
-../Inc/Led.h:51:6:LED_init	16	static
-../Inc/Button.h:31:6:Btn_init	16	static
-../Inc/Button.h:47:7:btn_isPressed	16	static
-../Inc/Button.h:57:6:waitUntil_btn_isReleased	16	static
 ../Src/main.c:50:5:main	8	static
 ../Src/main.c:69:6:delay	24	static

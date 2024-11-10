@@ -1,3 +1,7 @@
+"./Src/Button.o"
+"./Src/Led.o"
+"./Src/SystemClock.o"
+"./Src/Timer.o"
 "./Src/main.o"
 "./Src/syscalls.o"
 "./Src/sysmem.o"
