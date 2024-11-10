@@ -14,7 +14,8 @@
  * If no LICENSE file comes with this software, it is provided AS-IS.
  *
  *							REVISION HISTORY
- * Version 1.0: transmit data by UART
+ * Version 1.0.0: transmit data by UART
+ * Version 1.0.1: refactor code, separate .c and .h files
  ******************************************************************************
  */
 /* LIBRARIES */
