@@ -1,0 +1,5 @@
+../Src/ADC.c:27:6:ADC_Init	16	static
+../Src/ADC.c:87:6:ADC_Start_Polling	16	static
+../Src/ADC.c:95:10:ADC_Read	16	static
+../Src/ADC.c:101:6:ADC_End	16	static
+../Src/ADC.c:108:6:ADC_Start_IT	16	static

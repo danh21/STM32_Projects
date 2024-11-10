@@ -5,16 +5,28 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Src/ADC.c \
+../Src/SystemClock.c \
+../Src/Timer.c \
+../Src/USART.c \
 ../Src/main.c \
 ../Src/syscalls.c \
 ../Src/sysmem.c 
 
 OBJS += \
+./Src/ADC.o \
+./Src/SystemClock.o \
+./Src/Timer.o \
+./Src/USART.o \
 ./Src/main.o \
 ./Src/syscalls.o \
 ./Src/sysmem.o 
 
 C_DEPS += \
+./Src/ADC.d \
+./Src/SystemClock.d \
+./Src/Timer.d \
+./Src/USART.d \
 ./Src/main.d \
 ./Src/syscalls.d \
 ./Src/sysmem.d 
@@ -27,7 +39,7 @@ Src/%.o Src/%.su: ../Src/%.c Src/subdir.mk
 clean: clean-Src
 
 clean-Src:
-	-$(RM) ./Src/main.d ./Src/main.o ./Src/main.su ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su
+	-$(RM) ./Src/ADC.d ./Src/ADC.o ./Src/ADC.su ./Src/SystemClock.d ./Src/SystemClock.o ./Src/SystemClock.su ./Src/Timer.d ./Src/Timer.o ./Src/Timer.su ./Src/USART.d ./Src/USART.o ./Src/USART.su ./Src/main.d ./Src/main.o ./Src/main.su ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su
 
 .PHONY: clean-Src
 

@@ -14,9 +14,11 @@
  * If no LICENSE file comes with this software, it is provided AS-IS.
  *
  *							REVISION HISTORY
- * Version 1.0: read ADC by polling and send to console by UART
- * Version 1.1: read ADC by interrupt and send to console by UART
- * Version 1.2: can use channel 0 - 15 of ADC1/2/3 to read ADC
+ * Version 1.0.0: read ADC by polling and send to console by UART
+ * Version 1.1.0: read ADC by interrupt and send to console by UART
+ * Version 1.2.0: can use channel 0 - 15 of ADC1/2/3 to read ADC
+ * Version 1.2.1: refactor code, separate .c and .h files
+ *
  ******************************************************************************
  */
 /* LIBRARIES */
@@ -64,11 +66,11 @@ int main()
 
 
 
-/* ADC callback */
+/* ADC ISR */
 void ADC_IRQHandler(void)
 {
 	uint32_t ADC_data = ADC_Read(pADC);
-	sprintf(result, "adc value = %d\n", ADC_data);
+	sprintf(result, "adc value = %ld\n", ADC_data);
 	send_data(result);
 	delay_ms(1000);
 	pADC->SR &= ~(1<<1);		// reset EOC bit

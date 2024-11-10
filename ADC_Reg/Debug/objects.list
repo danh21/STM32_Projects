@@ -1,3 +1,7 @@
+"./Src/ADC.o"
+"./Src/SystemClock.o"
+"./Src/Timer.o"
+"./Src/USART.o"
 "./Src/main.o"
 "./Src/syscalls.o"
 "./Src/sysmem.o"
