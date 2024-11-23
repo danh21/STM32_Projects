@@ -1,0 +1,5 @@
+../Src/Timer.c:28:6:Timer_init	32	static
+../Src/Timer.c:81:6:Software_delay	24	static
+../Src/Timer.c:89:6:Timer_delay_ms	16	static
+../Src/Timer.c:97:6:PWM_init	32	static
+../Src/Timer.c:251:6:PWM_generate_auto	32	static
