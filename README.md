@@ -13,6 +13,8 @@
 - CP2102 USB to TTL UART Serial Converter Module
 - Variable resistor
 - Module I2C PCF8574 + LCD 20x4
+- Led
+- Resistors
 
 # Setting
 ### Preferences
