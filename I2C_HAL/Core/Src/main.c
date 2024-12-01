@@ -2,7 +2,7 @@
 /**
   ******************************************************************************
   * @file           : main.c
-  * @brief          : Main program body
+  * @brief          : STM32 works with I2C protocol
   ******************************************************************************
   * @attention
   *
@@ -13,6 +13,9 @@
   * in the root directory of this software component.
   * If no LICENSE file comes with this software, it is provided AS-IS.
   *
+  *  						REVISION HISTORY
+  *	Version 1.0.0: Initial release
+  *	Version 1.1.0: Change pack V1.28.1, add type casting for args in func i2c_lcd_send_string
   ******************************************************************************
   */
 /* USER CODE END Header */
@@ -64,6 +67,7 @@ static void MX_I2C1_Init(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -91,10 +95,10 @@ int main(void)
   i2c_lcd_init(&hi2c1, I2C_SLAVE_ADDRESS);
 
   i2c_lcd_set_position(&hi2c1, I2C_SLAVE_ADDRESS, 2, 2);
-  i2c_lcd_send_string(&hi2c1, I2C_SLAVE_ADDRESS, "I2C-LCD 20x4 DEMO");
+  i2c_lcd_send_string(&hi2c1, I2C_SLAVE_ADDRESS, (uint8_t*)"I2C-LCD 20x4 DEMO");
 
   i2c_lcd_set_position(&hi2c1, I2C_SLAVE_ADDRESS, 3, 6);
-  i2c_lcd_send_string(&hi2c1, I2C_SLAVE_ADDRESS, "Danh Phan");
+  i2c_lcd_send_string(&hi2c1, I2C_SLAVE_ADDRESS, (uint8_t*)"Danh Phan");
 
   /* USER CODE END 2 */
 
@@ -191,12 +195,16 @@ static void MX_I2C1_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+/* USER CODE BEGIN MX_GPIO_Init_1 */
+/* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
+/* USER CODE BEGIN MX_GPIO_Init_2 */
+/* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */

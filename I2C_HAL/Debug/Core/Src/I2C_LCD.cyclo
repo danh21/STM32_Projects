@@ -1,0 +1,5 @@
+../Core/Src/I2C_LCD.c:27:6:i2c_lcd_send_cmd	1
+../Core/Src/I2C_LCD.c:41:6:i2c_lcd_send_char	1
+../Core/Src/I2C_LCD.c:55:6:i2c_lcd_init	1
+../Core/Src/I2C_LCD.c:71:6:i2c_lcd_send_string	2
+../Core/Src/I2C_LCD.c:78:6:i2c_lcd_set_position	4
