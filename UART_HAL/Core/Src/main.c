@@ -14,9 +14,9 @@
   * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   *							REVISION HISTORY
-  *	Version 1.0: enter pass using polling
-  *
-  * Version 2.0: enter cmd, respond code using polling
+  *	Version 1.0.0: enter pass using polling
+  * Version 2.0.0: enter cmd, respond code using polling
+  * Version 2.1.0: change pack V1.28.1, update readme
   ******************************************************************************
   */
 /* USER CODE END Header */
@@ -112,6 +112,7 @@ void process_cmd(char *in)
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -241,11 +242,15 @@ static void MX_USART2_UART_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+/* USER CODE BEGIN MX_GPIO_Init_1 */
+/* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
+/* USER CODE BEGIN MX_GPIO_Init_2 */
+/* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
