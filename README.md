@@ -35,11 +35,10 @@
           "${workspace_loc:/Led_HAL/Drivers/CMSIS/Device/ST/STM32F4xx/Include}"
           "${workspace_loc:/Led_HAL/Drivers/CMSIS/Device/ST/STM32F4xx/Include}"
           ![image](https://github.com/user-attachments/assets/20b0c70b-da51-4342-86dc-1522ed1aa7fa)
-
 ### Debug with console
 - Run -> Debug Configurations... 
 - In tab Debugger -> Enable Serial Wire Viewer (SWV) -> Debug
-  ![image](https://github.com/user-attachments/assets/4e1f4320-5da8-4d10-8d27-05b4b97cbe59)
+  ![Inkedimages_LI](https://github.com/user-attachments/assets/67c2fdf1-08b0-4584-9724-1af6420afbe4)
 - Window -> Show View -> SWV -> SWV ITM Data Console
     + Configure trace -> Tick to ITM Stimulus port 0 -> OK
     + Start trace
