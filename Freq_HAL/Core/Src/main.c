@@ -2,7 +2,7 @@
 /**
   ******************************************************************************
   * @file           : main.c
-  * @brief          : Main program body
+  * @brief          : Investigate clocks of MCU
   ******************************************************************************
   * @attention
   *
@@ -15,7 +15,8 @@
   *
   *
   *							REVISION HISTORY
-  * Version 1.0: Investigate RCC clocks frequency APIs
+  * Version 1.0.0: Investigate RCC clocks frequency APIs
+  * Version 1.0.1: Migrate to v1.28.1, change HSE, fix warnings
   ******************************************************************************
   */
 /* USER CODE END Header */
@@ -74,6 +75,7 @@ int _write(int file, char *ptr, int len)
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -103,16 +105,16 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   // HCLK frequency
-  printf("HCLK Frequency: %d\n", HAL_RCC_GetHCLKFreq());
+  printf("HCLK Frequency: %ld\n", HAL_RCC_GetHCLKFreq());
 
   // SYSCLK frequency
-  printf("SYSCLK Frequency: %d\n", HAL_RCC_GetSysClockFreq());
+  printf("SYSCLK Frequency: %ld\n", HAL_RCC_GetSysClockFreq());
 
   // PCLK1 frequency
-  printf("PCLK1 Frequency: %d\n", HAL_RCC_GetPCLK1Freq());
+  printf("PCLK1 Frequency: %ld\n", HAL_RCC_GetPCLK1Freq());
 
   // PCLK2 frequency
-  printf("PCLK2 Frequency: %d\n", HAL_RCC_GetPCLK2Freq());
+  printf("PCLK2 Frequency: %ld\n", HAL_RCC_GetPCLK2Freq());
 
   while (1)
   {
@@ -141,7 +143,7 @@ void SystemClock_Config(void)
   * in the RCC_OscInitTypeDef structure.
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 12;
@@ -175,11 +177,15 @@ void SystemClock_Config(void)
   */
 static void MX_GPIO_Init(void)
 {
+/* USER CODE BEGIN MX_GPIO_Init_1 */
+/* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
+/* USER CODE BEGIN MX_GPIO_Init_2 */
+/* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
