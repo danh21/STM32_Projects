@@ -15,6 +15,7 @@
  *
  *							REVISION HISTORY
  * Version 1.0.0: Initial release
+ * Version 1.1.0: Modify format name of functions, add Button_init_exti function
  ******************************************************************************
  */
 #ifndef BUTTON_H_
@@ -42,27 +43,35 @@ typedef enum {
   * @param  pPort: pointer to GPIO port
   * @retval None
   */
-void Btn_init(GPIO_TypeDef* pPort);
+void Button_init(GPIO_TypeDef* pPort);
 
 
 /**
   * @brief  Check whether button is pressed or not
   * @param  pPort: pointer to GPIO port
-  * @param  pin: pin of port
+  * @param  pin: pin of button
   * @param  pull: pull-up or pull-down
   * @retval status of button
   */
-_Bool btn_isPressed (GPIO_TypeDef* pPort, uint8_t pin, GPIO_pull pull);
+_Bool Button_isPressed (GPIO_TypeDef* pPort, uint8_t pin, GPIO_pull pull);
 
 
 /**
   * @brief  Wait until button is released
   * @param  pPort: pointer to GPIO port
-  * @param  pin: pin of port
+  * @param  pin: pin of button
   * @param  pull: pull-up or pull-down
-  * @retval status of button
+  * @retval None
   */
-void waitUntil_btn_isReleased(GPIO_TypeDef* pPort, uint8_t pin, GPIO_pull pull);
+void Button_waitUntil_isReleased(GPIO_TypeDef* pPort, uint8_t pin, GPIO_pull pull);
 
+
+/**
+  * @brief  Initialize button as external interrupt
+  * @param  pPort: pointer to GPIO port
+  * @param  pin: pin of button
+  * @retval None
+  */
+void Button_init_exti(GPIO_TypeDef* pPort, uint8_t pin);
 
 #endif /* BUTTON_H_ */

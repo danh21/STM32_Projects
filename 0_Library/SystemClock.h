@@ -15,6 +15,7 @@
  *
  *							REVISION HISTORY
  * Version 1.0.0: Initial release
+ * Version 1.1.0: Modify comments, add SystemClock_config_MCO1 function
  ******************************************************************************
  */
 #ifndef SYSTEMCLOCK_H_
@@ -38,27 +39,35 @@ void SystemClock_config(void);
 
 
 /**
-  * @brief  Returns the HCLK frequency
+  * @brief  Returns the internal AHB clock frequency
   * @param  None
-  * @retval None
+  * @retval HCLK frequency
   */
-uint32_t Get_HCLK_freq(void);
+uint32_t SystemClock_get_HCLK_freq(void);
 
 
 /**
-  * @brief  Returns the PCLK1 frequency
+  * @brief  Returns the internal APB1 clock frequency
   * @param  None
-  * @retval None
+  * @retval PCLK1 frequency
   */
-uint32_t Get_PCLK1_freq(void);
+uint32_t SystemClock_get_PCLK1_freq(void);
 
 
 /**
-  * @brief  Returns the PCLK2 frequency
+  * @brief  Returns the internal APB2 clock frequency
+  * @param  None
+  * @retval PCLK2 frequency
+  */
+uint32_t SystemClock_get_PCLK2_freq(void);
+
+
+/**
+  * @brief  Config MCO (Microcontroller Clock Output)
   * @param  None
   * @retval None
   */
-uint32_t Get_PCLK2_freq(void);
+void SystemClock_config_MCO1(void);
 
 
 #endif /* SYSTEMCLOCK_H_ */
