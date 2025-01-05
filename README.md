@@ -7,6 +7,7 @@
 ### Software
 - STM32CubeIDE
 - Hercules
+- Sigrok PulseView
     
 ### Hardware
 - Board STM32F407
@@ -15,6 +16,7 @@
 - Module I2C PCF8574 + LCD 20x4
 - Led
 - Resistors
+- Logic Analyzer
 
 # Setting
 ### Preferences
