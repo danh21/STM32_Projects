@@ -14,8 +14,7 @@
  * If no LICENSE file comes with this software, it is provided AS-IS.
  *
  *							REVISION HISTORY
- * Version 1.0.0: initial release
- * Version 1.1.0: measure clock frequency using MCO1 pin
+ * Version 1.0.0: initial release, measure clock frequency using MCO1 pin
  ******************************************************************************
  */
 
