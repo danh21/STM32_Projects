@@ -16,6 +16,8 @@
  *							REVISION HISTORY
  * Version 1.0.0: Initial release
  * Version 1.1.0: Modify comments, add SystemClock_config_MCO1 function
+ * Version 1.2.0: Modify SystemClock_config_MCO1 function to add div param;
+ * rename SystemClock_config to SystemClock_config_HSI; add SystemClock_config_HSE
  ******************************************************************************
  */
 #ifndef SYSTEMCLOCK_H_
@@ -31,11 +33,19 @@
 
 // Prototypes
 /**
-  * @brief  Initialize default system clock
+  * @brief  Initialize default system clock as HSI
   * @param  None
   * @retval None
   */
-void SystemClock_config(void);
+void SystemClock_config_HSI(void);
+
+
+/**
+  * @brief  Initialize default system clock as HSE
+  * @param  None
+  * @retval None
+  */
+void SystemClock_config_HSE(void);
 
 
 /**
@@ -64,10 +74,10 @@ uint32_t SystemClock_get_PCLK2_freq(void);
 
 /**
   * @brief  Config MCO (Microcontroller Clock Output)
-  * @param  None
+  * @param  div: prescaler (division by 2->5)
   * @retval None
   */
-void SystemClock_config_MCO1(void);
+void SystemClock_config_MCO1(uint8_t div);
 
 
 #endif /* SYSTEMCLOCK_H_ */
