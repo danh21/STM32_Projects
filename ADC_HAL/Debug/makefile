@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (10.3-2021.10)
+# Toolchain: GNU Tools for STM32 (12.3.rel1)
 ################################################################################
 
 -include ../makefile.init
@@ -61,7 +61,7 @@ main-build: ADC_HAL.elf secondary-outputs
 
 # Tool invocations
 ADC_HAL.elf ADC_HAL.map: $(OBJS) $(USER_OBJS) D:\cd\STM32\Project\STM32_Projects\ADC_HAL\STM32F407VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "ADC_HAL.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\cd\STM32\Project\STM32_Projects\ADC_HAL\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_HAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "ADC_HAL.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\cd\STM32\Project\STM32_Projects\ADC_HAL\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_HAL.map" -Wl,--gc-sections -static -Wl,--no-warn-rwx-segments --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
